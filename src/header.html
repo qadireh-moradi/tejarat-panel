@@ -1,0 +1,48 @@
+<head>
+    <basis core='api'  run='atclient' 
+    url='https://api.trust-login.com/checkrkey/CF34390A-5BFD-419C-A465-F1D1EF483776' 
+    method='get' content-type='application/json' triggers='edit.object' onprocessed="checkRkeyOnProcessed" ></basis>
+    <div class="w-full  h-[100px] py-[20px] z-[90] px-[40px] fixed left-0 right-0 bg-bghead">
+        <div class="w-full h-full flex flex-row items-center justify-between">
+            <div class="flex flex-row items-center justify-center">
+                <button>
+                    <svg width="17" height="24" viewBox="0 0 17 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_362_438)">
+                            <path
+                                d="M15.1325 12.5947H7.65693C7.33522 12.5947 7.0744 12.3283 7.0744 11.9998C7.0744 11.6711 7.33522 11.4048 7.65693 11.4048H15.1321L12.6907 8.57752C12.4786 8.33232 12.501 7.95778 12.7409 7.74103C12.981 7.5241 13.3477 7.54693 13.56 7.79213L16.8545 11.6073C17.0516 11.8349 17.0465 12.1743 16.8525 12.3953L13.5598 16.2077C13.3477 16.4531 12.9808 16.4759 12.7407 16.2588C12.5008 16.042 12.4784 15.6673 12.6905 15.4221L15.1325 12.5947ZM13.1131 19.148C13.1131 18.8193 13.3765 18.553 13.7014 18.553C14.0264 18.553 14.2899 18.8193 14.2899 19.148V21.8137C14.2899 22.277 14.1016 22.6989 13.7997 23.0042C13.4974 23.3096 13.0802 23.4998 12.6224 23.4998H1.66762C1.20949 23.4998 0.792071 23.31 0.489792 23.0046C0.188068 22.6995 0 22.2781 0 21.8137V2.18625C0 1.72206 0.187513 1.30036 0.489422 0.994889C0.791331 0.689608 1.20838 0.5 1.66762 0.5H12.6222C13.0811 0.5 13.498 0.690169 13.7999 0.995264C14.1022 1.30092 14.2897 1.72319 14.2897 2.18625V4.85181C14.2897 5.1803 14.0263 5.44665 13.7012 5.44665C13.3764 5.44665 13.1129 5.1803 13.1129 4.85181V2.18625C13.1129 2.05112 13.0572 1.92702 12.9676 1.83643C12.8784 1.74621 12.7559 1.68987 12.622 1.68987H1.66762C1.53324 1.68987 1.41051 1.74602 1.32148 1.83624C1.23207 1.92627 1.17672 2.05037 1.17672 2.18625V21.8137C1.17672 21.9493 1.23244 22.073 1.32166 22.1632C1.41125 22.2538 1.53398 22.3101 1.66762 22.3101H12.6222C12.7555 22.3101 12.8779 22.2536 12.9675 22.163C13.0572 22.0724 13.1131 21.9485 13.1131 21.8137V19.148Z"
+                                fill="black" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_362_438">
+                                <rect width="17" height="23" fill="white" transform="translate(0 0.5)" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </button>
+                <!--  -->
+                <div class="w-[50px] h-[50px] mx-[10px]">
+                    <img src="asset/images/img/avatar.png" class="w-[50px] h-[50px]" alt="avatar">
+                </div>
+                <!--  -->
+                <div>
+                    <h4 class="text-text text-[14px] fobnt-[400] leading-[22px]">آقای افشین زر افشان</h4>
+                </div>
+
+            </div>
+
+            <div class="">
+                <a href="" class="w-[57px] h-[57px]">
+                    <img src="asset/images/img/logo.png" class="w-[57px] h-[57px]" alt="logo">
+                </a>
+
+            </div>
+        </div>
+    </div>
+</head>
+<script>
+    async function checkRkeyOnProcessed(args){
+        var response = args.response;
+        var json = await response.json();
+        $bc.setSource("db.userid" , json.userid)
+    }
+</script>

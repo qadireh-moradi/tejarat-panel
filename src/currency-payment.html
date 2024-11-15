@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <title>Document</title>
+</head>
+<style>
+    .divstyle {
+        position: relative;
+
+    }
+
+    .autocomplete-items {
+        border: 1px solid #d4d4d4;
+        width: 100%;
+        /* height: 130px; */
+        overflow-y: scroll;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99999;
+        position: absolute;
+        border-radius: 5px;
+        max-height: 150px;
+        overflow-y: auto;
+        background-color: var(--secondary);
+        margin-top: 10px;
+        overflow-y: auto;
+        padding: 10px 36px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.10);
+        font-size: 15px;
+        font-weight: 400;
+
+    }
+
+    .autocomplete-items div {
+        width: 100%;
+        /* height: 35px; */
+        /* line-height: 35px; */
+
+        border-bottom: 0.3px solid #002B43;
+        padding-bottom: 8px;
+        /* padding: 0px 36px; */
+    }
+
+    .autocomplete-items strong {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        /* margin: 0px 35px; */
+        /* border-bottom: 1px solid #000; */
+        padding-bottom: 8px;
+
+    }
+
+    .autocomplete-items div:hover {
+        color: #fff;
+        background-color: #194A96;
+        border-bottom: transparent
+    }
+
+
+
+    .autocomplete-item {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .autocomplete-item:hover {
+        background-color: #e9e9e9;
+    }
+
+
+    .sideclose {
+        width: 60px;
+    }
+
+    .backgroundsidebarmenud {
+        background-color: #ffff;
+    }
+
+    .showSideMenu {
+        overflow: hidden;
+        opacity: 0;
+        display: none;
+        width: 0px;
+    }
+
+    .hiddenbox {
+        display: none;
+    }
+
+    .showbox {
+        display: flex;
+    }
+
+    .svgclick>svg {
+        stroke: #000;
+        stroke: var(--textgray);
+    }
+
+    .svgnon>svg {
+        stroke: var(--textgray);
+
+    }
+
+    .showgrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .inputstyle {
+        width: 100%;
+        height: 40px;
+        /* margin: 0px 15px; */
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid var(--textgray);
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .styleh3box {
+        font-size: 45px;
+        color: #fff;
+    }
+
+    .stylediv {
+        margin-top: 35px;
+    }
+
+    .styledivmain {
+        margin-bottom: 35px;
+    }
+
+    .styletagp {
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: 700;
+    }
+
+    .stylemaindiv {
+        margin-top: 35px;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .custom-file-upload {
+        width: 100%;
+        height: 44px;
+        border-radius: 5px;
+        padding: 0px 10px;
+        cursor: pointer;
+        text-decoration-skip: flex;
+        align-items: center;
+        border: 1px solid var(--textgray);
+        color: #828282;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        line-height: 44px;
+
+    }
+
+    .custom-file-upload:hover {
+        color: #000;
+        stroke: #000 !important;
+
+    }
+
+    .custom-file-upload>span>svg {
+        stroke: #000 !important;
+    }
+
+    .divshoboxg>input {
+        opacity: 0;
+    }
+
+    .divshoboxg {
+        width: 273px;
+        height: 193px;
+        background-color: var(--tertiary);
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        cursor: pointer;
+        color: #fff;
+
+    }
+
+    .divshoboxg>p:first-of-type {
+        margin-top: 10px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .containerchecklist {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btndownloadmap {
+        width: 273px;
+        height: 40px;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin-top: 12px;
+
+    }
+
+    .styleinputgetform {
+        width: 480px !important;
+        height: 50px !important;
+        background-color: var(--primary) !important;
+        color: black;
+        border-radius: 8px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div[section-des=tab-5]>div>img {
+        display: none !important;
+    }
+
+    .stylelableinput {
+        left: 15px;
+        position: absolute;
+        top: 15%;
+    }
+
+    .invalivalue {
+        border: 1px solid red;
+        background: #FFD4D4;
+        color: #000;
+    }
+
+    .warninginput {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 2px;
+        align-items: center;
+        color: #FF0000;
+    }
+
+    .styleimgdiv {
+        width: 198px;
+        height: 119px;
+    }
+
+    .styledivimg {
+        width: 100%;
+        height: 170px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #D4DBE6;
+    }
+
+    .stylewarninginp {
+        width: 254px;
+        height: 90px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 16px;
+        background-color: #E8E8E8;
+        color: #484848;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 20px;
+        text-align: justify;
+        position: absolute;
+        opacity: 0;
+        z-index: 90;
+        padding: 15px 20px;
+        left: 70px;
+        top: -90px;
+        transition: opacity 1s ease, visibility 0.1s ease;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+
+    .stylewarninginp::before {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        z-index: -1;
+        background-color: #E8E8E8;
+        bottom: 0px;
+        left: 33%;
+        bottom: -11px;
+        rotate: 44deg;
+
+
+    }
+
+    .styleshowto {
+        position: relative;
+    }
+
+
+    .styleshowto:hover .stylewarninginp {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    .stylecheckp {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        gap: 5px;
+        align-items: center;
+        color: #fff;
+    }
+    .stylepaddingtoshow{
+        padding-right: 50px;
+        transition: padding 0.3s ease;
+
+    }
+</style>
+<!-- img map -->
+<!-- http://i113v121.undertest.ir/images/Map-35.jpg
+http://i113v121.undertest.ir/images/Map-38.jpg
+http://i113v121.undertest.ir/images/Map-38A.jpg
+http://i113v121.undertest.ir/images/Map-38B.jpg -->
+
+<body class="font-IRANSansWeb">
+
+    <!-- triggers="edit.object" -->
+
+
+    <basis core="call" file="./src/header.html" run="atclient"></basis>
+    <div class="w-full h-full flex flex-row">
+        <!--  -->
+        <basis core="call" file="./src/sidebar.html" run="atclient"></basis>
+        <div class="dashboardm mt-[100px] pr-[250px] w-full h-full mx-[40px] pt-[56px] bg-white">
+           
+            <div class="showbox w-full h-full bg-secondary px-[61px] py-[45px] flex-col" id="currencypayment">
+
+
+                <div class="flex justify-between">
+              
+                    <p class=" mb-10 text-lg"> پرداختى هاى ارزی </p>
+
+              
+                </div>
+                <basis core="schema" run="atclient" 
+                schemaUrl="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/C5A73CF1-EE10-4FE2-A28B-9E24B2357345/fa/پرداخت-ارزی" 
+                displayMode="new" button="[data-btn-add]" resultSourceId="form.result" OnRendered="currencypaymentOnRendered"></basis>
+                <basis core='callback' method='onSource' run='AtClient' triggers='form.result' ></basis>
+             
+                <basis core='api' if='{##edit.object|(false)##}' run='atclient' 
+                url='https://basispanel.ir/schema/domainform/CF34390A-5BFD-419C-A465-F1D1EF483776/fa/editobject' 
+                method='post' body='object_edit={##edit.object.value##}' content-type='application/x-www-form-urlencoded' triggers='edit.object' onprocessed='OnProcessedEditObject' ></basis>
+
+                <button id="btctnex"
+                        class="btnclicknext  h-[50px] ml-[10px] bg-primary rounded-[8px] text-black " data-btn-add="">ثبت</button>
+            </div>
+            <!-- #################### -->
+
+
+            <div class="hiddenbox w-full h-full flex flex-col ">
+              
+            </div>
+          
+
+
+
+            <!-- #################### -->
+            <div class="hiddenbox w-full h-full bg-secondary">div3</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div4</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div5</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div6</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div7</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div8</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div9</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div10</div>
+        </div>
+
+
+
+    </div>
+
+
+    <!-- <Basis core="api" run="atclient" schemaUrl="https://www.freeform.ir/schema/domainform"
+    
+        paramUrl="/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت"
+        displayMode="new" button="[data-btn-add]" resultSourceId="demo.data" 
+        triggers="db.renew">
+    </Basis> -->
+    <!-- <basis core="api"
+        url="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/B8F21C4C-DD9C-4225-AA15-EA6402D271D8/fa/ثبت-نام-خبرنگار"
+        method="get" name="api.name" OnProcessed="showSchema" run="atclient"></basis> -->
+
+
+       
+</body>
+<script src="http://basiscore.net/_js/basiscore-2.36.2.min.js"></script>
+<script src="http://cdn.basiscore.net/_js/alasql.min.js"></script>
+<script>
+    var host = {
+        debug: false,
+
+        settings: {
+
+            'connection.web.callcommand': 'http://127.20.20.64:5500/',
+            "connection.web.trust_login": "https://basiscore.net/apicms",
+            "connection.web.userbehavior": "https://basiscore.net/apicms",
+            'connection.web.basiscore': 'https://basiscore.net/apicms',
+            // 'connection.local.basket': {
+            //     Url: '/js/LocalStorageBasket.js',
+            //     Function: 'LocalBasket'
+            // },
+            // 'connection.web.callcommand'
+            'default.dbsource.verb': 'post',
+            'default.call.verb': 'get',
+            'default.viewCommand.groupColumn': 'prpid',
+            'default.dmnid': '4880',
+            'default.binding.regex': '\\{##([^#]*)##\\}'
+
+        }
+    }
+     
+ function onSource(args) {
+ const stringJson = JSON.stringify(args.source?.rows[0]);
+ $bc.setSource('edit.object', {
+ value: stringJson
+ })
+ }
+</script>
+<script>
+    
+function currencypaymentOnRendered(){
+    const exhibitioncard = document.querySelector("#currencypayment")
+    const reportersInputs = exhibitioncard.querySelectorAll("[data-sys-input-text]")
+    const reportersCaptions = exhibitioncard.querySelectorAll("[data-bc-question-title]")
+    exhibitioncard.querySelector("[data-bc-title-container]").style.display ="none"
+    reportersCaptions.forEach((e,i) => {
+        if(reportersInputs[i]){
+            reportersInputs[i].setAttribute("placeHolder" , e.textContent)
+            e.style.display ="none"
+        }
+    })
+}
+
+function OnProcessedEditObject(args){
+    
+}
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,59 @@
+<div class="sidebar w-[258px] h-full duration-300 fixed top-0 bottom-0 mt-[100px] bg-secondary ">
+    <div class="w-full h-[50px] flex items-center justify-end p-[20px]">
+        <button id="sidebarbtn">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line y1="1" x2="18" y2="1" stroke="black" stroke-width="2" />
+                <line y1="6" x2="18" y2="6" stroke="black" stroke-width="2" />
+                <line y1="11" x2="18" y2="11" stroke="black" stroke-width="2" />
+            </svg>
+        </button>
+
+    </div>
+    <div class="w-full containermenusidebar">
+        <ul
+            class="menusidebar [&>li]:w-full [&>li]:flex [&>li]:flex-row [&>li]:items-center [&>li]:h-[37px] [&>li]:text-text [&>li]:text-[14px] [&>li]:font-[400] [&>li]:rounded-tl-[18px] [&>li]:rounded-bl-[18px] [&>li]:leading-[37px] [&>li]:pr-[20px] cursor-pointer">
+            <li class="backgroundsidebarmenud">ویرایش پروفایل</li>
+            <li>ثبت نام شرکت</li>
+            <li>مالی </li>
+            <li>صدور کارت غرفه</li>
+            <li>ثبت نام خبرنگاران</li>
+            <li>دورهای ثبت نام شده</li>
+            <li>ثبت نام بازدیدکنندگان</li>
+            <li>ثبت شکایت</li>
+            <li>پیام ها</li>
+            <li>خروج</li>
+        </ul>
+    </div>
+
+
+</div>
+<script>
+    const sidebar = document.querySelector(".sidebar")
+    const sidebarbtn = document.querySelector("#sidebarbtn")
+    const containermenusidebar = document.querySelector(".containermenusidebar")
+    const dashboardm = document.querySelectorAll(".dashboardm>div")
+    const menusidebar = document.querySelectorAll(".menusidebar>li")
+    sidebarbtn.addEventListener("click", () => {
+        sidebar.classList.toggle("sideclose");
+        containermenusidebar.classList.toggle("showSideMenu")
+        document.querySelector(".dashboardm").classList.toggle("stylepaddingtoshow")
+
+
+    })
+    
+    menusidebar.forEach((e, o) => {
+        e.addEventListener("click", (s, i) => {
+            menusidebar.forEach((i, p) => {
+                i.classList.remove("backgroundsidebarmenud")
+                dashboardm[p].classList.add("hiddenbox")
+                dashboardm[p].classList.remove("showbox")
+            })
+            s.currentTarget.classList.add("backgroundsidebarmenud")
+            dashboardm[o].classList.add("showbox")
+
+
+
+
+        })
+    })
+</script>

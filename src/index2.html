@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <title>Document</title>
+</head>
+<style>
+    .sideclose {
+        width: 60px;
+    }
+
+    .backgroundsidebarmenud {
+        background-color: #ffff;
+    }
+
+    .showSideMenu {
+        overflow: hidden;
+        opacity: 0;
+        display: none;
+        width: 0px;
+    }
+
+    .hiddenbox {
+        display: none;
+    }
+
+    .showbox {
+        display: flex;
+    }
+
+    .svgclick>svg {
+        stroke: #000;
+    }
+
+    .svgnon>svg {
+        stroke: var(--textgray);
+    }
+
+    .showgrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .inputstyle {
+        width: 100%;
+        height: 40px;
+        /* margin: 0px 15px; */
+        border-radius: 10px;
+        outline: none;
+        border: 1px solid var(--textgray);
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .styleh3box {
+        font-size: 45px;
+        color: #fff;
+    }
+
+    .stylediv {
+        margin-top: 35px;
+    }
+
+    .styledivmain {
+        margin-bottom: 35px;
+    }
+
+    .styletagp {
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: 700;
+    }
+
+    .stylemaindiv {
+        margin-top: 35px;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .custom-file-upload {
+        width: 100%;
+        height: 44px;
+        border-radius: 5px;
+        padding: 0px 10px;
+        cursor: pointer;
+        text-decoration-skip: flex;
+        align-items: center;
+        border: 1px solid var(--textgray);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        line-height: 44px;
+
+    }
+
+    .divshoboxg>input {
+        opacity: 0;
+    }
+
+    .divshoboxg {
+        width: 273px;
+        height: 193px;
+        background-color: var(--tertiary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+    }
+
+    .containerchecklist {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btndownloadmap {
+        width: 273px;
+        height: 40px;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin-top: 12px;
+
+    }
+
+    .styleinputgetform {
+        width: 480px !important;
+        height: 50px !important;
+        background-color: var(--primary) !important;
+        color: black;
+        border-radius: 8px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+
+    <basis core="callback" run="atclient" triggers="demo.data" method="onSource"></basis>
+
+    <Basis core="api" url="https://www.freeform.ir/schema/domainform/E3DEBE78-37CB-407B-BB34-92B4BA97A8FF/fa/editobject"
+        method="post" run="atclient"
+        body="object_edit={##edit.object.value##}&captcha={##edit.object.captcha##}&captchaid={##edit.object.captchaid##}"
+        content-type="application/x-www-form-urlencoded" if="{##edit.object|(false)##}"
+        OnProcessed="OnProcessedEditObject">
+    </Basis>
+
+    <!-- triggers="edit.object" -->
+
+
+    <head>
+        <div class="w-full  h-[100px] py-[20px] px-[40px] bg-bghead">
+            <div class="w-full h-full flex flex-row items-center justify-between">
+                <div class="flex flex-row items-center justify-center">
+                    <button>
+                        <svg width="17" height="24" viewBox="0 0 17 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_362_438)">
+                                <path
+                                    d="M15.1325 12.5947H7.65693C7.33522 12.5947 7.0744 12.3283 7.0744 11.9998C7.0744 11.6711 7.33522 11.4048 7.65693 11.4048H15.1321L12.6907 8.57752C12.4786 8.33232 12.501 7.95778 12.7409 7.74103C12.981 7.5241 13.3477 7.54693 13.56 7.79213L16.8545 11.6073C17.0516 11.8349 17.0465 12.1743 16.8525 12.3953L13.5598 16.2077C13.3477 16.4531 12.9808 16.4759 12.7407 16.2588C12.5008 16.042 12.4784 15.6673 12.6905 15.4221L15.1325 12.5947ZM13.1131 19.148C13.1131 18.8193 13.3765 18.553 13.7014 18.553C14.0264 18.553 14.2899 18.8193 14.2899 19.148V21.8137C14.2899 22.277 14.1016 22.6989 13.7997 23.0042C13.4974 23.3096 13.0802 23.4998 12.6224 23.4998H1.66762C1.20949 23.4998 0.792071 23.31 0.489792 23.0046C0.188068 22.6995 0 22.2781 0 21.8137V2.18625C0 1.72206 0.187513 1.30036 0.489422 0.994889C0.791331 0.689608 1.20838 0.5 1.66762 0.5H12.6222C13.0811 0.5 13.498 0.690169 13.7999 0.995264C14.1022 1.30092 14.2897 1.72319 14.2897 2.18625V4.85181C14.2897 5.1803 14.0263 5.44665 13.7012 5.44665C13.3764 5.44665 13.1129 5.1803 13.1129 4.85181V2.18625C13.1129 2.05112 13.0572 1.92702 12.9676 1.83643C12.8784 1.74621 12.7559 1.68987 12.622 1.68987H1.66762C1.53324 1.68987 1.41051 1.74602 1.32148 1.83624C1.23207 1.92627 1.17672 2.05037 1.17672 2.18625V21.8137C1.17672 21.9493 1.23244 22.073 1.32166 22.1632C1.41125 22.2538 1.53398 22.3101 1.66762 22.3101H12.6222C12.7555 22.3101 12.8779 22.2536 12.9675 22.163C13.0572 22.0724 13.1131 21.9485 13.1131 21.8137V19.148Z"
+                                    fill="black" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_362_438">
+                                    <rect width="17" height="23" fill="white" transform="translate(0 0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </button>
+                    <!--  -->
+                    <div class="w-[50px] h-[50px] mx-[10px]">
+                        <img src="asset/images/img/avatar.png" class="w-[50px] h-[50px]" alt="avatar">
+                    </div>
+                    <!--  -->
+                    <div>
+                        <h4 class="text-text text-[14px] fobnt-[400] leading-[22px]">آقای افشین زر افشان</h4>
+                    </div>
+
+                </div>
+
+                <div class="">
+                    <a href="" class="w-[57px] h-[57px]">
+                        <img src="asset/images/img/logo.png" class="w-[57px] h-[57px]" alt="logo">
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </head>
+    <div class="w-full h-full flex flex-row">
+        <div class="sidebar w-[258px] h-full duration-300 bg-secondary ">
+            <div class="w-full h-[50px] flex items-center justify-end p-[20px]">
+                <button id="sidebarbtn">
+                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line y1="1" x2="18" y2="1" stroke="black" stroke-width="2" />
+                        <line y1="6" x2="18" y2="6" stroke="black" stroke-width="2" />
+                        <line y1="11" x2="18" y2="11" stroke="black" stroke-width="2" />
+                    </svg>
+                </button>
+
+            </div>
+            <div class="w-full containermenusidebar">
+                <ul
+                    class="menusidebar [&>li]:w-full [&>li]:flex [&>li]:flex-row [&>li]:items-center [&>li]:h-[37px] [&>li]:text-text [&>li]:text-[14px] [&>li]:font-[400] [&>li]:rounded-tl-[18px] [&>li]:rounded-bl-[18px] [&>li]:leading-[37px] [&>li]:pr-[20px] cursor-pointer">
+                    <li class="backgroundsidebarmenud">ویرایش پروفایل</li>
+                    <li>ثبت نام شرکت</li>
+                    <li>مالی <span class=" p-[5px]"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 8L0.669872 0.5L9.33013 0.5L5 8Z" fill="black" />
+                            </svg>
+                        </span></li>
+                    <li>صدور کارت غرفه</li>
+                    <li>ثبت نام خبرنگاران</li>
+                    <li>دورهای ثبت نام شده</li>
+                    <li>ثبت نام بازدیدکنندگان</li>
+                    <li>ثبت شکایت</li>
+                    <li>پیام ها</li>
+                    <li>خروج</li>
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="dashboardm w-full h-full mx-[40px] pt-[56px] bg-white">
+            <div class="showbox w-full h-full bg-secondary">div1</div>
+            <!-- #################### -->
+
+
+            <div class="hiddenbox w-full h-full flex flex-col ">
+                <div class="w-full h-[79px] mb-[15px] shadow-md px-[61px] flex justify-start items-center bg-secondary">
+                    <h4 class="setiontitle flex flex-row">
+                        <span class="flex flex-row">
+                            <h5 id="tab-1" class="text-black">1.ثبت نام شرکت</h5>
+                            <span class="svgclick mx-[15px]">
+                                <svg width="15" height="24" viewBox="0 0 15 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 12L13 22" stroke="" stroke-width="3" />
+                                </svg>
+                            </span>
+
+                        </span>
+
+                        <span class="flex flex-row">
+                            <h5 id="tab-2" class="tab-2 text-textgray">2.آپلود مدارک</h5>
+                            <span class="svgnon flex justify-center items-center mx-[15px]">
+                                <svg width="15" height="24" viewBox="0 0 15 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 12L13 22" stroke="" stroke-width="3" />
+                                </svg>
+                            </span>
+                        </span>
+
+                        <span class="flex flex-row">
+                            <h5 id="tab-3" class="tab-3 text-textgray">3.درخواست غرفه</h5>
+                            <span class="svgnon flex justify-center items-center mx-[15px]">
+                                <svg width="15" height="24" viewBox="0 0 15 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 12L13 22" stroke="" stroke-width="3" />
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="flex flex-row">
+                            <h5 id="tab-4" class="tab-4 text-textgray">4.غرفه و جانمایی</h5>
+                            <span class="svgnon flex justify-center items-center mx-[15px]">
+                                <svg width="15" height="24" viewBox="0 0 15 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 12L13 22" stroke="" stroke-width="3" />
+                                </svg>
+                            </span>
+                        </span>
+                        <span>
+                            <h5 id="tab-5" class="tab-5 text-textgray">5.بارگزاری قرارداد</h5>
+                        </span>
+                    </h4>
+                </div>
+
+                <div class="getvalue w-full h-auto  bg-secondary">
+                    <div class="showbox flex-col sectionOne w-full h-auto bg-secondary px-[61px] py-[45px]"></div>
+
+
+                    <div class="hiddenbox flex-col sectionTwo w-full h-auto bg-secondary px-[61px] py-[45px]"></div>
+                    <div class="hiddenbox flex-col sectionTree w-full h-auto bg-secondary px-[61px] py-[45px]"></div>
+
+                    <div class="hiddenbox flex-col sectionFor w-full h-auto bg-secondary px-[61px] py-[45px]">
+                        <div>
+                            <h4>غرفه و جانمایی</h4>
+                            <p class="flex leading-[30px] flex-row items-center">
+                                <svg style="margin: 0px 5px;" width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_247_5495)">
+                                        <path
+                                            d="M11.001 0.101562C4.99173 0.101562 0.101562 4.99173 0.101562 11.001C0.101562 17.0102 4.99173 21.9003 11.001 21.9003C17.0102 21.9003 21.9003 17.0102 21.9003 11.001C21.9003 4.99173 17.0102 0.101562 11.001 0.101562ZM11.001 20.2235C5.916 20.2235 1.77839 16.0859 1.77839 11.001C1.77839 5.916 5.916 1.77839 11.001 1.77839C16.0859 1.77839 20.2235 5.916 20.2235 11.001C20.2235 16.0859 16.0859 20.2235 11.001 20.2235Z"
+                                            fill="#CFB62C" />
+                                        <path
+                                            d="M11.0005 12.9584C11.4638 12.9584 11.8389 12.5832 11.8389 12.1199V5.41263C11.8389 4.9494 11.4638 4.57422 11.0005 4.57422C10.5373 4.57422 10.1621 4.9494 10.1621 5.41263V12.1199C10.1621 12.5832 10.5373 12.9584 11.0005 12.9584Z"
+                                            fill="#CFB62C" />
+                                        <path
+                                            d="M12.3975 16.0323C12.3975 17.8957 9.60352 17.8957 9.60352 16.0323C9.60352 14.1689 12.3975 14.1689 12.3975 16.0323Z"
+                                            fill="#CFB62C" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_247_5495">
+                                            <rect width="22" height="22" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                ثبت درخواست شما به منزله تایید نمی باشد و نتیجه متعاقبا به شما اعلام می گردد
+                            </p>
+
+                            <div class="w-full">
+                                <table class="min-w-full ">
+                                    <thead class="bg-tertiary">
+                                        <tr>
+                                            <th class="py-2 w-[50%] text-center text-white">شماره غرفه</th>
+                                            <th class="py-2 w-[50%] text-center text-white">متراژ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border border-white bg-tertiarylight">
+                                        <tr class="">
+                                            <td class="py-2 border-[2px] text-center border-white  text-black">سالن یک
+                                            </td>
+                                            <td class="py-2 border-[2px] text-center border-white  text-black">50 متر
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                            <div class="">
+                                <h3>انتخاب غرفه جدید</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hiddenbox flex-col sectionFive w-full h-auto bg-secondary px-[61px] py-[45px]">
+                        <div>
+                            <h4 class="text-[18px] font-[700]">دستورالعمل ها و مدارک</h4>
+                            <div class="formupload1 flex flex-col gap-[15px] mt-[30px]">
+                                <h4 class="text-[18px] text-black leading-[20px]">فرم یک:</h4>
+                                <p class="mt-[24px] text-black leading-[20px]">از این قسمت می توانید فرم قوانین و مقررات
+                                    غرفه را دانلود بفرمایید.</p>
+                                <a class="w-[480px] rounded-[8px] h-[50px] flex justify-center items-center bg-primary"
+                                    href="">
+                                    دانلود
+                                    <svg width="18" height="23" viewBox="0 0 18 23" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_242_3938)">
+                                            <path
+                                                d="M9.00009 0.427734C8.74961 0.427734 8.50939 0.524663 8.33227 0.697196C8.15515 0.86973 8.05565 1.10374 8.05565 1.34773V15.6077L2.17176 9.84853C2.08401 9.76306 1.97984 9.69525 1.86519 9.64899C1.75054 9.60273 1.62766 9.57892 1.50356 9.57892C1.37947 9.57892 1.25659 9.60273 1.14194 9.64899C1.02729 9.69525 0.923118 9.76306 0.835369 9.84853C0.747621 9.93401 0.678016 10.0355 0.630527 10.1472C0.583037 10.2589 0.558594 10.3786 0.558594 10.4994C0.558594 10.6203 0.583037 10.74 0.630527 10.8517C0.678016 10.9634 0.747621 11.0649 0.835369 11.1503L8.33426 18.4551C8.3783 18.497 8.42567 18.5355 8.47592 18.5701H8.5137L8.63648 18.6345H8.69315C8.73258 18.6501 8.77381 18.6609 8.81593 18.6667C8.8771 18.6737 8.93891 18.6737 9.00009 18.6667C9.06286 18.6735 9.12621 18.6735 9.18898 18.6667C9.22944 18.6603 9.26903 18.6495 9.30704 18.6345H9.3637L9.48648 18.5701H9.52426L9.67065 18.4551L17.1648 11.1503C17.342 10.9777 17.4416 10.7436 17.4416 10.4994C17.4416 10.2553 17.342 10.0212 17.1648 9.84853C16.9876 9.67591 16.7472 9.57892 16.4966 9.57892C16.246 9.57892 16.0056 9.67591 15.8284 9.84853L9.94454 15.5847V1.34773C9.94454 1.10374 9.84503 0.86973 9.66792 0.697196C9.4908 0.524663 9.25057 0.427734 9.00009 0.427734Z"
+                                                fill="black" />
+                                            <path
+                                                d="M1.50109 22.5724H16.4989C16.7493 22.5724 16.9896 22.4755 17.1667 22.303C17.3438 22.1304 17.4433 21.8964 17.4433 21.6524C17.4433 21.4084 17.3438 21.1744 17.1667 21.0019C16.9896 20.8293 16.7493 20.7324 16.4989 20.7324H1.50109C1.2506 20.7324 1.01038 20.8293 0.833263 21.0019C0.656145 21.1744 0.556641 21.4084 0.556641 21.6524C0.556641 21.8964 0.656145 22.1304 0.833263 22.303C1.01038 22.4755 1.2506 22.5724 1.50109 22.5724Z"
+                                                fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_242_3938">
+                                                <rect width="17" height="23" fill="white" transform="translate(0.5)" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+
+                                </a>
+                            </div>
+                            <p class="flex flex-row justify-start items-center mt-[10px]"><svg style="margin: 0px 3px;"
+                                    width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.8994 0C4.89017 0 0 4.89017 0 10.8994C0 16.9086 4.89017 21.7988 10.8994 21.7988C16.9086 21.7988 21.7988 16.9086 21.7988 10.8994C21.7988 4.89017 16.9086 0 10.8994 0ZM10.8994 20.122C5.81444 20.122 1.67683 15.9843 1.67683 10.8994C1.67683 5.81444 5.81444 1.67683 10.8994 1.67683C15.9843 1.67683 20.122 5.81444 20.122 10.8994C20.122 15.9843 15.9843 20.122 10.8994 20.122Z"
+                                        fill="#CFB62C" />
+                                    <path
+                                        d="M10.899 12.8568C11.3622 12.8568 11.7374 12.4816 11.7374 12.0184V5.31107C11.7374 4.84784 11.3622 4.47266 10.899 4.47266C10.4357 4.47266 10.0605 4.84784 10.0605 5.31107V12.0184C10.0605 12.4816 10.4357 12.8568 10.899 12.8568Z"
+                                        fill="#CFB62C" />
+                                    <path
+                                        d="M12.296 15.9307C12.296 17.7941 9.50195 17.7941 9.50195 15.9307C9.50195 14.0674 12.296 14.0674 12.296 15.9307Z"
+                                        fill="#CFB62C" />
+                                </svg>
+                                تصویر آپلود شده باید با پسوند jpg و یا jpeg باشد و حداکثر حجم مجاز برای آپلود، 100
+                                کیلوبایت است.
+                            </p>
+                            <div class="formupload2 flex flex-col gap-[15px] mt-[30px]">
+                                <h4 class="text-[18px] text-black leading-[20px]">فرم دو:</h4>
+                                <p class="mt-[24px] text-black leading-[20px]">از این قسمت می توانید فرم قوانین و مقررات
+                                    غرفه را دانلود بفرمایید.</p>
+                                <a class="w-[480px] rounded-[8px] flex justify-center items-center h-[50px] bg-primary"
+                                    href="">
+                                    دانلود
+                                    <svg width="18" height="23" viewBox="0 0 18 23" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_242_3938)">
+                                            <path
+                                                d="M9.00009 0.427734C8.74961 0.427734 8.50939 0.524663 8.33227 0.697196C8.15515 0.86973 8.05565 1.10374 8.05565 1.34773V15.6077L2.17176 9.84853C2.08401 9.76306 1.97984 9.69525 1.86519 9.64899C1.75054 9.60273 1.62766 9.57892 1.50356 9.57892C1.37947 9.57892 1.25659 9.60273 1.14194 9.64899C1.02729 9.69525 0.923118 9.76306 0.835369 9.84853C0.747621 9.93401 0.678016 10.0355 0.630527 10.1472C0.583037 10.2589 0.558594 10.3786 0.558594 10.4994C0.558594 10.6203 0.583037 10.74 0.630527 10.8517C0.678016 10.9634 0.747621 11.0649 0.835369 11.1503L8.33426 18.4551C8.3783 18.497 8.42567 18.5355 8.47592 18.5701H8.5137L8.63648 18.6345H8.69315C8.73258 18.6501 8.77381 18.6609 8.81593 18.6667C8.8771 18.6737 8.93891 18.6737 9.00009 18.6667C9.06286 18.6735 9.12621 18.6735 9.18898 18.6667C9.22944 18.6603 9.26903 18.6495 9.30704 18.6345H9.3637L9.48648 18.5701H9.52426L9.67065 18.4551L17.1648 11.1503C17.342 10.9777 17.4416 10.7436 17.4416 10.4994C17.4416 10.2553 17.342 10.0212 17.1648 9.84853C16.9876 9.67591 16.7472 9.57892 16.4966 9.57892C16.246 9.57892 16.0056 9.67591 15.8284 9.84853L9.94454 15.5847V1.34773C9.94454 1.10374 9.84503 0.86973 9.66792 0.697196C9.4908 0.524663 9.25057 0.427734 9.00009 0.427734Z"
+                                                fill="black" />
+                                            <path
+                                                d="M1.50109 22.5724H16.4989C16.7493 22.5724 16.9896 22.4755 17.1667 22.303C17.3438 22.1304 17.4433 21.8964 17.4433 21.6524C17.4433 21.4084 17.3438 21.1744 17.1667 21.0019C16.9896 20.8293 16.7493 20.7324 16.4989 20.7324H1.50109C1.2506 20.7324 1.01038 20.8293 0.833263 21.0019C0.656145 21.1744 0.556641 21.4084 0.556641 21.6524C0.556641 21.8964 0.656145 22.1304 0.833263 22.303C1.01038 22.4755 1.2506 22.5724 1.50109 22.5724Z"
+                                                fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_242_3938">
+                                                <rect width="17" height="23" fill="white" transform="translate(0.5)" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+
+                                </a>
+
+                            </div>
+                            <p class="flex flex-row justify-start leading-[22px] items-center mt-[10px]"><svg
+                                    style="margin: 0px 3px;" width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.8994 0C4.89017 0 0 4.89017 0 10.8994C0 16.9086 4.89017 21.7988 10.8994 21.7988C16.9086 21.7988 21.7988 16.9086 21.7988 10.8994C21.7988 4.89017 16.9086 0 10.8994 0ZM10.8994 20.122C5.81444 20.122 1.67683 15.9843 1.67683 10.8994C1.67683 5.81444 5.81444 1.67683 10.8994 1.67683C15.9843 1.67683 20.122 5.81444 20.122 10.8994C20.122 15.9843 15.9843 20.122 10.8994 20.122Z"
+                                        fill="#CFB62C" />
+                                    <path
+                                        d="M10.899 12.8568C11.3622 12.8568 11.7374 12.4816 11.7374 12.0184V5.31107C11.7374 4.84784 11.3622 4.47266 10.899 4.47266C10.4357 4.47266 10.0605 4.84784 10.0605 5.31107V12.0184C10.0605 12.4816 10.4357 12.8568 10.899 12.8568Z"
+                                        fill="#CFB62C" />
+                                    <path
+                                        d="M12.296 15.9307C12.296 17.7941 9.50195 17.7941 9.50195 15.9307C9.50195 14.0674 12.296 14.0674 12.296 15.9307Z"
+                                        fill="#CFB62C" />
+                                </svg>
+                                تصویر آپلود شده باید با پسوند jpg و یا jpeg باشد و حداکثر حجم مجاز برای آپلود، 100
+                                کیلوبایت است.
+                            </p>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="btctnex flex flex-row justify-between">
+                    <button id="btctnex"
+                        class="btnclicknext w-[480px] h-[50px] ml-[10px] bg-primary rounded-[8px] text-black ">ثبت و
+                        ادامه</button>
+                    <button id="btnclickprv"
+                        class="hiddenbox btnclickprv w-[480px] mr-[10px] h-[50px] bg-primary rounded-[8px] text-black ">برگشت
+                        به
+                        مرحله قبل</button>
+                </div>
+
+
+
+
+
+
+
+
+
+            </div>
+            <div
+                class="popup w-full h-full sectionLast bg-secondary hidden flex-col fixed z-50  top-0 bottom-0 right-0 left-0 px-[112px] py-[48px]">
+                <div>
+                    <button class="closepopup">
+                        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.1327 30.0827L7.91602 27.866L16.7827 18.9993L7.91602 10.1327L10.1327 7.91602L18.9993 16.7827L27.866 7.91602L30.0827 10.1327L21.216 18.9993L30.0827 27.866L27.866 30.0827L18.9993 21.216L10.1327 30.0827Z"
+                                fill="black" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- ######### -->
+                <div class="w-full h-[600px] ">
+                    <img class="w-full h-[600px]" id="imgmapmain" src="" alt="map">
+                </div>
+                <!-- ######### -->
+                <div>
+                    <div class="flex flex-row items-center justify-between mt-[10px]">
+                        <h3>انتخاب غرفه جدید</h3>
+                        <a id="downlaodimgmap" href="" download="GFG">
+                            <button
+                                class="w-[211px] h-[40px] text-[14px] border border-black rounded-[5px] fonbt-[300]">دانلود
+                                نقشه پلان </button>
+                        </a>
+                    </div>
+                    <button class="addnewmap w-[480px] h-[42px] bg-primary text-black rounded-[5px] ">ثبت</button>
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <!-- #################### -->
+            <div class="hiddenbox w-full h-full bg-secondary">div3</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div4</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div5</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div6</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div7</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div8</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div9</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div10</div>
+        </div>
+
+
+
+    </div>
+
+
+    <!-- <Basis core="api" run="atclient" schemaUrl="https://www.freeform.ir/schema/domainform"
+    
+        paramUrl="/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت"
+        displayMode="new" button="[data-btn-add]" resultSourceId="demo.data" 
+        triggers="db.renew">
+    </Basis> -->
+    <basis core="api"
+        url="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت"
+        method="get" name="api.name" OnProcessed="showSchema" run="atclient"></basis>
+
+</body>
+<script src="http://basiscore.net/_js/basiscore-2.36.2.min.js"></script>
+<script src="http://cdn.basiscore.net/_js/alasql.min.js"></script>
+<script>
+    var host = {
+        debug: false,
+
+        settings: {
+
+            'connection.web.callcommand': 'http://a4tech.webisaz.ir/',
+            "connection.web.trust_login": "https://basiscore.net/apicms",
+            "connection.web.userbehavior": "https://basiscore.net/apicms",
+            'connection.web.basiscore': 'https://basiscore.net/apicms',
+            // 'connection.local.basket': {
+            //     Url: '/js/LocalStorageBasket.js',
+            //     Function: 'LocalBasket'
+            // },
+            // 'connection.web.callcommand'
+            'default.dbsource.verb': 'post',
+            'default.call.verb': 'get',
+            'default.viewCommand.groupColumn': 'prpid',
+            'default.dmnid': '4880',
+            'default.binding.regex': '\\{##([^#]*)##\\}'
+
+        }
+    }
+</script>
+<script>
+    const sidebarbtn = document.querySelector("#sidebarbtn")
+    const containermenusidebar = document.querySelector(".containermenusidebar")
+    const sidebar = document.querySelector(".sidebar")
+    sidebarbtn.addEventListener("click", () => {
+        sidebar.classList.toggle("sideclose");
+        containermenusidebar.classList.toggle("showSideMenu")
+
+
+    })
+    const dashboardm = document.querySelectorAll(".dashboardm>div")
+    const menusidebar = document.querySelectorAll(".menusidebar>li")
+    menusidebar.forEach((e, o) => {
+        e.addEventListener("click", (s, i) => {
+            menusidebar.forEach((i, p) => {
+                i.classList.remove("backgroundsidebarmenud")
+                dashboardm[p].classList.add("hiddenbox")
+                dashboardm[p].classList.remove("showbox")
+            })
+            s.currentTarget.classList.add("backgroundsidebarmenud")
+            dashboardm[o].classList.add("showbox")
+
+
+
+
+        })
+    })
+
+
+
+    const sctionOne = document.querySelector(".sction-One")
+    const sctiontwo = document.querySelector(".sction-two")
+    const sectionOne = document.querySelector(".sectionOne")
+    const sectionTwo = document.querySelector(".sectionTwo")
+    const sectionTree = document.querySelector(".sectionTree")
+    const sectionFor = document.querySelector(".sectionFor")
+    const sectionFive = document.querySelector(".sectionFive")
+
+    const sectionLast = document.querySelector(".sectionLast")
+
+
+    async function showSchema(args) {
+        const response = args.response;
+        const json = await response.json();
+        const inputdata = json.sources[0].data[0].questions
+        const section = json.sources[0].data[0].sections
+        section.forEach((e) => {
+            const creatediv = document.createElement("div")
+            creatediv.classList = "styledivmain"
+            const tagp = document.createElement("p")
+            tagp.classList = "styletagp"
+            tagp.innerText = e.title
+            creatediv.appendChild(tagp)
+            const maindiv = document.createElement("div")
+            maindiv.classList = "stylediv showgrid"
+            maindiv.setAttribute("sectionud", e.id)
+            maindiv.setAttribute("section-des", e.description)
+            creatediv.appendChild(maindiv)
+
+            creatediv.setAttribute("data-sectionud", e.id)
+
+
+            if (e.description == "tab-1") { sectionOne.appendChild(creatediv) }
+            if (e.description == "tab-2") { sectionTwo.appendChild(creatediv) }
+            if (e.description == "tab-3") { sectionTree.appendChild(creatediv) }
+            if (e.description == "tab-4") { sectionFor.appendChild(creatediv) }
+            if (e.description == "tab-5") { sectionFive.appendChild(creatediv) }
+
+            if (e.description == "last-section") { sectionLast.appendChild(creatediv) }
+        })
+
+
+
+
+
+
+
+
+
+        inputdata.forEach((e, i) => {
+            // console.log(e.parts[0].viewType);
+            let input = null;
+            let label = null;
+            const getprpid = document.querySelectorAll("div[data-sectionud]")
+            if (e.parts[0].viewType == "text") {
+                input = document.createElement("input")
+                input.setAttribute("id-input", e.prpId)
+                input.classList = "inputstyle"
+                input.type = "text"
+                input.placeholder = e.title
+                // const getprpid = 
+                // creatediv.appendChild(input)
+            }
+            if (e.parts[0].viewType == "select") {
+                input = document.createElement("select")
+                input.classList = "inputstyle"
+                input.placeholder = e.title
+                // creatediv.appendChild(input)
+            }
+
+            // <img id="previewImage" src="" alt="Preview" style="display: none; width: 300px; height: auto;">
+            if (e.parts[0].viewType == "upload") {
+
+                const divsectionimg = document.createElement("div")
+                const labelupload = document.createElement("label")
+                labelupload.innerHTML = e.title
+                labelupload.classList = "custom-file-upload"
+
+                labelupload.htmlFor = e.prpId
+
+                const myimg = document.createElement("img")
+                myimg.alt = "Preview"
+                myimg.style.display = 'none'
+                myimg.className = e.prpId
+
+                const getfile = document.createElement("input")
+                getfile.type = "file"
+                getfile.id = e.prpId
+                getfile.classList.add("inputstyle")
+                getfile.placeholder = e.title
+                divsectionimg.appendChild(labelupload)
+                divsectionimg.appendChild(myimg)
+                divsectionimg.appendChild(getfile)
+
+                getfile.addEventListener('change', function () {
+                    // console.log("OK");
+                    // console.log(this.files)
+                    const file = this.files[0]
+                    if (file) {
+                        const reader = new FileReader()
+                        reader.onload = function (e) {
+
+                            myimg.src = e.target.result
+                            myimg.style.display = 'block'
+                        }
+                        reader.readAsDataURL(file)
+                    }
+                });
+                if (e.parts[0].caption == "form1") {
+                    document.querySelector(".formupload1").appendChild(labelupload)
+                    // labelupload.innerHTML = "آپلود"
+                    labelupload.innerHTML = `آپلود <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.757812 25.108C0.757812 24.4681 1.26774 23.9473 1.89418 23.9473H23.1073C23.7337 23.9473 24.2436 24.4681 24.2436 25.108C24.2436 25.7493 23.7337 26.2687 23.1073 26.2687H1.89418C1.26774 26.2687 0.757812 25.7493 0.757812 25.108Z" fill="black"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.88 10.4516C20.4368 10.9057 19.7167 10.9057 19.2735 10.4516L12.5007 3.53523L5.72801 10.4516C5.28481 10.9057 4.56466 10.9057 4.12146 10.4516C3.67826 9.99891 3.67826 9.26333 4.12146 8.81063L11.6967 1.07303C12.1414 0.618885 12.8601 0.618885 13.3047 1.07303L20.88 8.81063C21.3232 9.26333 21.3232 9.99891 20.88 10.4516Z" fill="black"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5016 20.0774C11.8737 20.0774 11.3652 19.5566 11.3652 18.9167V3.44001C11.3652 2.7987 11.8737 2.2793 12.5016 2.2793C13.1295 2.2793 13.638 2.7987 13.638 3.44001V18.9167C13.638 19.5566 13.1295 20.0774 12.5016 20.0774Z" fill="black"/>
+                                            </svg>
+                                            `
+                    labelupload.classList = "styleinputgetform"
+                }
+                if (e.parts[0].caption == "form2") {
+                    document.querySelector(".formupload2").appendChild(labelupload)
+                    labelupload.innerHTML = `آپلود <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.757812 25.108C0.757812 24.4681 1.26774 23.9473 1.89418 23.9473H23.1073C23.7337 23.9473 24.2436 24.4681 24.2436 25.108C24.2436 25.7493 23.7337 26.2687 23.1073 26.2687H1.89418C1.26774 26.2687 0.757812 25.7493 0.757812 25.108Z" fill="black"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.88 10.4516C20.4368 10.9057 19.7167 10.9057 19.2735 10.4516L12.5007 3.53523L5.72801 10.4516C5.28481 10.9057 4.56466 10.9057 4.12146 10.4516C3.67826 9.99891 3.67826 9.26333 4.12146 8.81063L11.6967 1.07303C12.1414 0.618885 12.8601 0.618885 13.3047 1.07303L20.88 8.81063C21.3232 9.26333 21.3232 9.99891 20.88 10.4516Z" fill="black"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5016 20.0774C11.8737 20.0774 11.3652 19.5566 11.3652 18.9167V3.44001C11.3652 2.7987 11.8737 2.2793 12.5016 2.2793C13.1295 2.2793 13.638 2.7987 13.638 3.44001V18.9167C13.638 19.5566 13.1295 20.0774 12.5016 20.0774Z" fill="black"/>
+                                            </svg>
+                                            `
+                    labelupload.classList = "styleinputgetform"
+
+                }
+                input = divsectionimg
+            }
+
+            if (e.parts[0].viewType == "select") {
+                input = document.createElement("select")
+                input.classList = "inputstyle"
+                input.placeholder = e.title
+                // creatediv.appendChild(input)
+            }
+            if (e.parts[0].viewType == "checklist") {
+                // link img msap
+                // e.parts[0].link
+
+
+                // create container div Keeper
+                const containerchecklist = document.createElement("div")
+                containerchecklist.classList = "containerchecklist"
+
+                const btndownload = document.createElement("button")
+                btndownload.innerText = "دانلود"
+
+                btndownload.classList = "btndownloadmap"
+
+
+
+
+                const maindivchecklist = document.createElement("div")
+                const tag3 = document.createElement("h3")
+                tag3.classList = "styleh3box"
+                tag3.innerText = e.title
+                maindivchecklist.appendChild(tag3)
+
+                maindivchecklist.classList = "divshoboxg"
+
+
+                input = document.createElement("input")
+                // input.classList = "inputstyle"
+                input.type = "checkbox"
+
+                input.placeholder = e.title
+                // creatediv.appendChild(input)
+                maindivchecklist.appendChild(input)
+
+                containerchecklist.appendChild(maindivchecklist)
+                containerchecklist.appendChild(btndownload)
+
+                input = containerchecklist
+
+
+                containerchecklist.addEventListener("click", (s) => {
+                    // console.log("OK");
+                    document.querySelector(".popup").style.display = "flex"
+                    document.querySelector("#imgmapmain").src = e.parts[0].link
+                    document.querySelector("#downlaodimgmap").href = e.parts[0].link
+
+
+
+                })
+            }
+            getprpid.forEach((prpid) => {
+                // console.log(prpid);
+                if (parseInt(prpid.dataset.sectionud) == e.sectionId) {
+                    prpid.children[1].appendChild(input)
+                }
+
+            })
+        })
+
+        function readFileAsDataURL(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = () => reject(new Error('err p'));
+                if (file != undefined) {
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        const getvalue = document.querySelectorAll(".getvalue>div")
+        const btnclicknext = document.querySelector(".btnclicknext")
+        const btnclickprv = document.querySelector(".btnclickprv")
+        const btctnex = document.querySelector(".btctnex")
+        const sectionud = document.querySelectorAll(".sectionud")
+
+
+
+        let counter = 0;
+        let currentIndex = 0;
+        btctnex.addEventListener("click", async (e) => {
+            const setiontitle = document.querySelectorAll(".setiontitle>span>h5");
+            if (e.target.id == "btctnex") {
+                if (currentIndex < setiontitle.length - 1) {
+                    const backbtn = document.querySelector("#btnclickprv")
+                    backbtn.classList.remove("hiddenbox")
+
+                    currentIndex++;
+                    getvalue.forEach((e) => {
+                        e.classList.add("hiddenbox");
+                        e.classList.remove("showbox");
+                    });
+                    console.log(currentIndex);
+                    getvalue[currentIndex].classList.remove("hiddenbox");
+                    getvalue[currentIndex].classList.add("showbox");
+                    
+                }            
+                 else {
+                    return;
+                }
+
+                const mainArray = [];
+                const groupedSections = {};
+                const sections = document.querySelectorAll(`[section-des="${setiontitle[currentIndex - 1].id}"]`);
+
+
+
+
+                for (const section of sections) {
+                    const sectionArray = [];
+                    const sectionDes = section.getAttribute("section-des");
+                    const inputs = section.querySelectorAll('input');
+
+                    for (const input of inputs) {
+                        if (input.type === "file") {
+                            if (input.files.length > 0) {
+
+                                const file = input.files[0];
+                                const inputid = input.id;
+                                const fileContent = await readFileAsDataURL(file);
+
+                                sectionArray.push({
+                                    fileName: file.name,
+                                    fileContent: fileContent,
+                                    fileId: inputid
+                                });
+                            }
+                        } else {
+                            sectionArray.push({
+                                "prpid": input.getAttribute("id-input"),
+                                "value": input.value
+                            });
+                        }
+                    }
+
+                    if (!groupedSections[sectionDes]) {
+                        groupedSections[sectionDes] = [];
+                    }
+                    groupedSections[sectionDes].push({
+                        divPropertyId: section.getAttribute("sectionud"),
+                        section: sectionArray
+                    });
+                }
+
+                try {
+                    const existingData = JSON.parse(localStorage.getItem('formData')) || {};
+
+                    for (const key in groupedSections) {
+                        if (!existingData[key]) {
+                            existingData[key] = [];
+                        }
+
+                        groupedSections[key].forEach((newItem) => {
+                            const existingIndex = existingData[key].findIndex((existingItem) => {
+                                return existingItem.divPropertyId === newItem.divPropertyId;
+                            });
+
+                            if (existingIndex !== -1) {
+                                existingData[key][existingIndex] = newItem;
+                            } else {
+                                existingData[key].push(newItem);
+                            }
+                        });
+                    }
+
+                    localStorage.setItem('formData', JSON.stringify(existingData));
+                } catch (error) {
+                    console.error(error);
+                }
+
+
+                // console.log(groupedSections);
+            }
+
+            if (e.target.id == "btnclickprv") {
+                if (e.target.id == "btnclickprv") {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        getvalue.forEach((e) => {
+                            e.classList.add("hiddenbox");
+                            e.classList.remove("showbox");
+                        });
+                        console.log(currentIndex);
+                        getvalue[currentIndex].classList.remove("hiddenbox");
+                        getvalue[currentIndex].classList.add("showbox");
+                    }
+                    // else if (currentIndex == 0) {
+                    //     const backbtn = document.querySelector("#btnclickprv")
+                    //     console.log(backbtn);
+                    //     backbtn.classList.add("hiddenbox")
+                    // }
+                    else {
+                        return;
+                    }
+
+                }
+            }
+
+
+        });
+
+
+        const addnewmap = document.querySelector(".addnewmap")
+        const closepopup = document.querySelector(".closepopup")
+        const popup = document.querySelector(".popup")
+        closepopup.addEventListener("click", () => {
+            popup.style.display = "none"
+        })
+        addnewmap.addEventListener("click", () => {
+            popup.style.display = "none"
+        })
+
+        // ################################
+        // const storedData = JSON.parse(localStorage.getItem('formData'));
+        // if (!storedData) {
+        //     return
+        // }
+        // const sections = document.querySelectorAll('div[sectionud]');
+        // sections.forEach(async(e, i) => {
+        //     const myinput = e.querySelectorAll("input")
+        //     const mylocal =  storedData[i]
+        //     myinput.forEach((s, p) => {
+        //         if (mylocal[p].prpid == s.getAttribute("id-input")){
+        //             console.log(myinput[p]);
+        //             s.value = mylocal[p].value
+        //             //  s.value =  "ok"
+        //         }
+
+        //     })
+        // })
+        // ################################
+        try {
+            const storedData = localStorage.getItem('formData');
+            if (!storedData) { return; }
+
+
+            const mainArray = JSON.parse(storedData);
+            const sections = document.querySelectorAll('div.stylediv[sectionud]');
+            sections.forEach((section, sectionIndex) => {
+                if (!mainArray[sectionIndex]) return;
+
+                const sectionData = mainArray[sectionIndex];
+                const inputs = section.querySelectorAll('input.inputstyle');
+
+                inputs.forEach((input) => {
+                    // console.log(input);
+                    const inputData = sectionData.find(item => item.prpid === input.getAttribute("id-input"));
+                    if (inputData && inputData.value) {
+                        input.value = inputData.value;
+                    }
+
+
+                    if (input.type == "file") {
+                        // input.nextSibling.src = 
+                        // const fileData = sectionData.find(item => item.fileId === input.id);
+
+                        // sectionData.forEach((es)=>{
+                        //     if(es.fileId === input.id){
+                        //         console.log(es);
+                        //     }
+
+                        // })
+
+                        // if(parseInt(input.id) == parseInt(fileData.fileId)){                                
+                        //         console.log("Yes");
+                        //         // console.log(input.nextSibling);
+                        //         // input.nextSibling.src = fileData.fileContent
+                        //         input.previousSibling.style.display = "flex"
+                        //         input.previousSibling.src = fileData.fileContent
+
+
+                        // }
+
+                    }
+
+                });
+            });
+        } catch (error) {
+            console.error(error);
+        }
+
+
+    }
+</script>
+
+</html>

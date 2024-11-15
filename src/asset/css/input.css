@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{    
+    --primary : #CFB62C;
+    --secondary : #F5F5F5;
+    --tertiary : #194A96;
+    --tertiarylight : #194b9650;
+    --text: #000;
+    --textgray : #828282;
+    --textred: #961919;
+    --bghead : #DFDFDF;
+    --white:#fff;
+    --inputBorder : #c1c1c1  
+
+}
+
+@font-face {
+    font-family: 'IRANSans';
+    font-style: normal;
+    font-weight: normal;
+    src: url('https://cdn.basiscore.net/_fonts/IRANSansWeb(FaNum).eot');
+    src: url('https://cdn.basiscore.net/_fonts/IRANSansWeb(FaNum).eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+         url('https://cdn.basiscore.net/_fonts/IRANSansWeb(FaNum).woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+         url('https://cdn.basiscore.net/_fonts/IRANSansWeb(FaNum).woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+         url('https://cdn.basiscore.net/_fonts/IRANSansWeb(FaNum).ttf') format('truetype');
+}
+#exhibitioncard [data-bc-part-container],#riyalpament [data-bc-schema-column],#currencypayment [data-bc-schema-column],#chequepayment [data-bc-schema-column]{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: 1fr 1fr; */
+    width: 100%;
+    gap: 15px;
+}
+#exhibitioncard [data-bc-answer],#riyalpament [data-bc-answer],#currencypayment [data-bc-answer],#chequepayment [data-bc-answer]{
+    display: flex;
+    flex-direction: column;
+}
+#exhibitioncard [data-bc-answer-container],#riyalpament [data-bc-answer-container] ,#currencypayment [data-bc-answer-container],#chequepayment [data-bc-answer-container]{
+    width: 100%;
+}
+#exhibitioncard [data-bc-schema-info-part="4"] [data-bc-part-related-cell],#riyalpament [data-bc-schema-info-part="4"] [data-bc-part-related-cell]
+,#currencypayment [data-bc-schema-info-part="4"] [data-bc-part-related-cell],#currencypayment [data-bc-schema-info-part="4"] [data-bc-part-related-cell]
+{
+    width: 100%;
+}
+#exhibitioncard [data-bc-answer-container] input[type="text"],#exhibitioncard [data-bc-answer-container] input[type="file"],
+#riyalpament [data-bc-answer-container] input[type="text"],#riyalpament [data-bc-answer-container] input[type="file"],
+#currencypayment [data-bc-answer-container] input[type="text"],#currencypayment [data-bc-answer-container] input[type="file"],
+#chequepayment [data-bc-answer-container] input[type="text"],#chequepayment [data-bc-answer-container] input[type="file"],
+#chequepayment [data-bc-answer-container] textarea
+{
+    background-color: var(--white);
+    border: 1px solid var(--inputBorder);
+    height: 44px;
+    box-shadow: 0px 0px 4px 0px #E1E1E1;
+    padding: 10px;
+
+}
+#exhibitioncard [data-sys-plus],#riyalpament [data-sys-plus], #currencypayment [data-sys-plus] ,#chequepayment [data-sys-plus] {
+    border:  1px solid var(--inputBorder);
+    box-shadow: 0px 0px 4px 0px #E1E1E1;
+    background: var(--textgray);
+    background-color: inherit;
+    height: 44px;
+    width: calc(50% - 10px) !important;
+    color: var(--textgray);
+    margin-top: 10px;
+
+}
+#exhibitioncard [data-bc-answer]{
+    margin-bottom: 15px;
+}
+#exhibitioncard #btctnex,#riyalpament #btctnex, #currencypayment #btctnex,#chequepayment #btctnex {
+    width: calc(50% - 10px) !important;
+}
+#riyalpament [data-bc-part-container],#currencypayment [data-bc-part-container],#chequepayment [data-bc-part-container] {
+    width: 100%;
+}
+#riyalpament [data-bc-question] ,#currencypayment [data-bc-question],#chequepayment [data-bc-question]{
+    margin-bottom: 0;
+}
+#riyalpament [data-bc-schema-info-part="1"] [data-bc-part-related-cell] , #currencypayment [data-bc-schema-info-part="1"] [data-bc-part-related-cell],
+#chequepayment [data-bc-schema-info-part="1"] [data-bc-part-related-cell]
+{
+    width: 100%;
+}

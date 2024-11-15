@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <title>Document</title>
+</head>
+<style>
+    .divstyle {
+        position: relative;
+
+    }
+
+    .autocomplete-items {
+        border: 1px solid #d4d4d4;
+        width: 100%;
+        /* height: 130px; */
+        overflow-y: scroll;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99999;
+        position: absolute;
+        border-radius: 5px;
+        max-height: 150px;
+        overflow-y: auto;
+        background-color: var(--secondary);
+        margin-top: 10px;
+        overflow-y: auto;
+        padding: 10px 36px;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.10);
+        font-size: 15px;
+        font-weight: 400;
+
+    }
+
+    .autocomplete-items div {
+        width: 100%;
+        /* height: 35px; */
+        /* line-height: 35px; */
+
+        border-bottom: 0.3px solid #002B43;
+        padding-bottom: 8px;
+        /* padding: 0px 36px; */
+    }
+
+    .autocomplete-items strong {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        /* margin: 0px 35px; */
+        /* border-bottom: 1px solid #000; */
+        padding-bottom: 8px;
+
+    }
+
+    .autocomplete-items div:hover {
+        color: #fff;
+        background-color: #194A96;
+        border-bottom: transparent
+    }
+
+
+
+    .autocomplete-item {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .autocomplete-item:hover {
+        background-color: #e9e9e9;
+    }
+
+
+    .sideclose {
+        width: 60px;
+    }
+
+    .backgroundsidebarmenud {
+        background-color: #ffff;
+    }
+
+    .showSideMenu {
+        overflow: hidden;
+        opacity: 0;
+        display: none;
+        width: 0px;
+    }
+
+    .hiddenbox {
+        display: none;
+    }
+
+    .showbox {
+        display: flex;
+    }
+
+    .svgclick>svg {
+        stroke: #000;
+        stroke: var(--textgray);
+    }
+
+    .svgnon>svg {
+        stroke: var(--textgray);
+
+    }
+
+    .showgrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .inputstyle {
+        width: 100%;
+        height: 40px;
+        /* margin: 0px 15px; */
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid var(--textgray);
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .styleh3box {
+        font-size: 45px;
+        color: #fff;
+    }
+
+    .stylediv {
+        margin-top: 35px;
+    }
+
+    .styledivmain {
+        margin-bottom: 35px;
+    }
+
+    .styletagp {
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: 700;
+    }
+
+    .stylemaindiv {
+        margin-top: 35px;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .custom-file-upload {
+        width: 100%;
+        height: 44px;
+        border-radius: 5px;
+        padding: 0px 10px;
+        cursor: pointer;
+        text-decoration-skip: flex;
+        align-items: center;
+        border: 1px solid var(--textgray);
+        color: #828282;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        line-height: 44px;
+
+    }
+
+    .custom-file-upload:hover {
+        color: #000;
+        stroke: #000 !important;
+
+    }
+
+    .custom-file-upload>span>svg {
+        stroke: #000 !important;
+    }
+
+    .divshoboxg>input {
+        opacity: 0;
+    }
+
+    .divshoboxg {
+        width: 273px;
+        height: 193px;
+        background-color: var(--tertiary);
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        cursor: pointer;
+        color: #fff;
+
+    }
+
+    .divshoboxg>p:first-of-type {
+        margin-top: 10px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    .containerchecklist {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btndownloadmap {
+        width: 273px;
+        height: 40px;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin-top: 12px;
+
+    }
+
+    .styleinputgetform {
+        width: 480px !important;
+        height: 50px !important;
+        background-color: var(--primary) !important;
+        color: black;
+        border-radius: 8px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div[section-des=tab-5]>div>img {
+        display: none !important;
+    }
+
+    .stylelableinput {
+        left: 15px;
+        position: absolute;
+        top: 15%;
+    }
+
+    .invalivalue {
+        border: 1px solid red;
+        background: #FFD4D4;
+        color: #000;
+    }
+
+    .warninginput {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 2px;
+        align-items: center;
+        color: #FF0000;
+    }
+
+    .styleimgdiv {
+        width: 198px;
+        height: 119px;
+    }
+
+    .styledivimg {
+        width: 100%;
+        height: 170px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #D4DBE6;
+    }
+
+    .stylewarninginp {
+        width: 254px;
+        height: 90px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 16px;
+        background-color: #E8E8E8;
+        color: #484848;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 20px;
+        text-align: justify;
+        position: absolute;
+        opacity: 0;
+        z-index: 90;
+        padding: 15px 20px;
+        left: 70px;
+        top: -90px;
+        transition: opacity 1s ease, visibility 0.1s ease;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+
+    .stylewarninginp::before {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        z-index: -1;
+        background-color: #E8E8E8;
+        bottom: 0px;
+        left: 33%;
+        bottom: -11px;
+        rotate: 44deg;
+
+
+    }
+
+    .styleshowto {
+        position: relative;
+    }
+
+
+    .styleshowto:hover .stylewarninginp {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    .stylecheckp {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        gap: 5px;
+        align-items: center;
+        color: #fff;
+    }
+    .stylepaddingtoshow{
+        padding-right: 50px;
+        transition: padding 0.3s ease;
+
+    }
+</style>
+<!-- img map -->
+<!-- http://i113v121.undertest.ir/images/Map-35.jpg
+http://i113v121.undertest.ir/images/Map-38.jpg
+http://i113v121.undertest.ir/images/Map-38A.jpg
+http://i113v121.undertest.ir/images/Map-38B.jpg -->
+
+<body>
+    <basis core="callback" run="atclient" triggers="demo.data" method="onSource"></basis>
+
+    <Basis core="api" url="https://www.freeform.ir/schema/domainform/E3DEBE78-37CB-407B-BB34-92B4BA97A8FF/fa/editobject"
+        method="post" run="atclient"
+        body="object_edit={##edit.object.value##}&captcha={##edit.object.captcha##}&captchaid={##edit.object.captchaid##}"
+        content-type="application/x-www-form-urlencoded" if="{##edit.object|(false)##}"
+        OnProcessed="OnProcessedEditObject">
+    </Basis>
+
+    <!-- triggers="edit.object" -->
+
+
+    <basis core="call" file="./src/header.html" run="atclient"></basis>
+    <div class="w-full h-full flex flex-row">
+        <!--  -->
+        <basis core="call" file="./src/sidebar.html" run="atclient"></basis>
+        <div class="dashboardm mt-[100px] pr-[250px] w-full h-full mx-[40px] pt-[56px] bg-white">
+            <div class="showbox w-full h-full bg-secondary">div1</div>
+            <!-- #################### -->
+
+
+            <div class="hiddenbox w-full h-full flex flex-col ">
+                <div class="w-full h-[79px] mb-[15px] shadow-md px-[61px] flex justify-start items-center bg-secondary">
+                    <h4 class="setiontitle flex flex-row">
+                        <span class="flex flex-row">
+                            <h5 id="tab-1" class="flex text-black">1.ثبت نام شرکت
+                                <span class="svgclick mx-[15px]">
+                                    <svg class="svgclick" width="15" height="24" viewBox="0 0 15 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13 2L3 12L13 22" stroke="" stroke-width="3" />
+                                    </svg>
+                                </span>
+                            </h5>
+
+
+                        </span>
+
+                        <span class="flex flex-row">
+                            <h5 id="tab-2" class="flex tab-2 text-textgray">2.آپلود مدارک
+                                <span class="svgnon flex justify-center items-center mx-[15px]">
+                                    <svg class="svgclick" width="15" height="24" viewBox="0 0 15 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13 2L3 12L13 22" stroke="" stroke-width="3" />
+                                    </svg>
+                                </span>
+                            </h5>
+
+                        </span>
+
+                        <span class="flex flex-row">
+                            <h5 id="tab-3" class="flex tab-3 text-textgray">3.درخواست غرفه
+                                <span class="svgnon flex justify-center items-center mx-[15px]">
+                                    <svg class="svgclick" width="15" height="24" viewBox="0 0 15 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13 2L3 12L13 22" stroke="" stroke-width="3" />
+                                    </svg>
+                                </span>
+                            </h5>
+
+                        </span>
+                        <span class="flex flex-row">
+                            <h5 id="tab-4" class="flex  tab-4 text-textgray">4.غرفه و جانمایی
+                                <span class="svgnon flex justify-center items-center mx-[15px]">
+                                    <svg class="svgclick" width="15" height="24" viewBox="0 0 15 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13 2L3 12L13 22" stroke="" stroke-width="3" />
+                                    </svg>
+                                </span>
+                            </h5>
+
+                        </span>
+                        <span>
+                            <h5 id="tab-5" class="tab-5 text-textgray">5.بارگزاری قرارداد</h5>
+                        </span>
+                    </h4>
+                </div>
+
+                <div class="getvalue w-full h-auto  bg-secondary">
+                    <div class="showbox flex-col sectionOne w-full h-auto bg-secondary px-[61px] py-[45px]"></div>
+
+
+                    <div class="hiddenbox flex-col sectionTwo w-full h-auto bg-secondary px-[61px] py-[45px]"></div>
+                    <div class="hiddenbox flex-col sectionTree w-full h-auto bg-secondary px-[61px] py-[45px]"></div>
+
+                    <div class="hiddenbox flex-col sectionFor w-full h-auto bg-secondary px-[61px] py-[45px]">
+                        <div>
+                            <h4>غرفه و جانمایی</h4>
+                            <p class="flex leading-[30px] my-[15px] flex-row items-center">
+                                <svg style="margin: 0px 5px;" width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_247_5495)">
+                                        <path
+                                            d="M11.001 0.101562C4.99173 0.101562 0.101562 4.99173 0.101562 11.001C0.101562 17.0102 4.99173 21.9003 11.001 21.9003C17.0102 21.9003 21.9003 17.0102 21.9003 11.001C21.9003 4.99173 17.0102 0.101562 11.001 0.101562ZM11.001 20.2235C5.916 20.2235 1.77839 16.0859 1.77839 11.001C1.77839 5.916 5.916 1.77839 11.001 1.77839C16.0859 1.77839 20.2235 5.916 20.2235 11.001C20.2235 16.0859 16.0859 20.2235 11.001 20.2235Z"
+                                            fill="#CFB62C" />
+                                        <path
+                                            d="M11.0005 12.9584C11.4638 12.9584 11.8389 12.5832 11.8389 12.1199V5.41263C11.8389 4.9494 11.4638 4.57422 11.0005 4.57422C10.5373 4.57422 10.1621 4.9494 10.1621 5.41263V12.1199C10.1621 12.5832 10.5373 12.9584 11.0005 12.9584Z"
+                                            fill="#CFB62C" />
+                                        <path
+                                            d="M12.3975 16.0323C12.3975 17.8957 9.60352 17.8957 9.60352 16.0323C9.60352 14.1689 12.3975 14.1689 12.3975 16.0323Z"
+                                            fill="#CFB62C" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_247_5495">
+                                            <rect width="22" height="22" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                ثبت درخواست شما به منزله تایید نمی باشد و نتیجه متعاقبا به شما اعلام می گردد
+                            </p>
+
+                            <div class="w-full">
+                                <table class="min-w-full ">
+                                    <thead class="bg-tertiary">
+                                        <tr>
+                                            <th class="py-2 w-[50%] text-center text-white">شماره غرفه</th>
+                                            <th class="py-2 w-[50%] text-center text-white">متراژ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="border border-white bg-tertiarylight">
+                                        <tr class="">
+                                            <td class="py-2 border-[2px] text-center border-white  text-black">سالن یک
+                                            </td>
+                                            <td class="py-2 border-[2px] text-center border-white  text-black">50 متر
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                            <div class="mt-[35px]">
+                                <h3 class="text-[18px] font-[800]">انتخاب غرفه جدید</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hiddenbox flex-col sectionFive w-full h-auto bg-secondary px-[61px] py-[45px]">
+                        <div>
+                            <h4 class="text-[18px] font-[700]">دستورالعمل ها و مدارک</h4>
+                            <div class="formupload1 flex flex-col gap-[15px] mt-[30px]">
+                                <h4 class="text-[18px] text-black leading-[20px]">فرم یک:</h4>
+                                <p class="mt-[24px] text-black leading-[20px]">از این قسمت می توانید فرم قوانین و مقررات
+                                    غرفه را دانلود بفرمایید.</p>
+                                <a class="w-[480px] rounded-[8px] h-[50px] flex justify-center items-center bg-primary"
+                                    href="">
+                                    دانلود
+                                    <svg width="18" height="23" viewBox="0 0 18 23" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_242_3938)">
+                                            <path
+                                                d="M9.00009 0.427734C8.74961 0.427734 8.50939 0.524663 8.33227 0.697196C8.15515 0.86973 8.05565 1.10374 8.05565 1.34773V15.6077L2.17176 9.84853C2.08401 9.76306 1.97984 9.69525 1.86519 9.64899C1.75054 9.60273 1.62766 9.57892 1.50356 9.57892C1.37947 9.57892 1.25659 9.60273 1.14194 9.64899C1.02729 9.69525 0.923118 9.76306 0.835369 9.84853C0.747621 9.93401 0.678016 10.0355 0.630527 10.1472C0.583037 10.2589 0.558594 10.3786 0.558594 10.4994C0.558594 10.6203 0.583037 10.74 0.630527 10.8517C0.678016 10.9634 0.747621 11.0649 0.835369 11.1503L8.33426 18.4551C8.3783 18.497 8.42567 18.5355 8.47592 18.5701H8.5137L8.63648 18.6345H8.69315C8.73258 18.6501 8.77381 18.6609 8.81593 18.6667C8.8771 18.6737 8.93891 18.6737 9.00009 18.6667C9.06286 18.6735 9.12621 18.6735 9.18898 18.6667C9.22944 18.6603 9.26903 18.6495 9.30704 18.6345H9.3637L9.48648 18.5701H9.52426L9.67065 18.4551L17.1648 11.1503C17.342 10.9777 17.4416 10.7436 17.4416 10.4994C17.4416 10.2553 17.342 10.0212 17.1648 9.84853C16.9876 9.67591 16.7472 9.57892 16.4966 9.57892C16.246 9.57892 16.0056 9.67591 15.8284 9.84853L9.94454 15.5847V1.34773C9.94454 1.10374 9.84503 0.86973 9.66792 0.697196C9.4908 0.524663 9.25057 0.427734 9.00009 0.427734Z"
+                                                fill="black" />
+                                            <path
+                                                d="M1.50109 22.5724H16.4989C16.7493 22.5724 16.9896 22.4755 17.1667 22.303C17.3438 22.1304 17.4433 21.8964 17.4433 21.6524C17.4433 21.4084 17.3438 21.1744 17.1667 21.0019C16.9896 20.8293 16.7493 20.7324 16.4989 20.7324H1.50109C1.2506 20.7324 1.01038 20.8293 0.833263 21.0019C0.656145 21.1744 0.556641 21.4084 0.556641 21.6524C0.556641 21.8964 0.656145 22.1304 0.833263 22.303C1.01038 22.4755 1.2506 22.5724 1.50109 22.5724Z"
+                                                fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_242_3938">
+                                                <rect width="17" height="23" fill="white" transform="translate(0.5)" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+
+                                </a>
+                            </div>
+                            <p class="flex flex-row justify-start items-center mt-[14px]"><svg style="margin: 0px 3px;"
+                                    width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.8994 0C4.89017 0 0 4.89017 0 10.8994C0 16.9086 4.89017 21.7988 10.8994 21.7988C16.9086 21.7988 21.7988 16.9086 21.7988 10.8994C21.7988 4.89017 16.9086 0 10.8994 0ZM10.8994 20.122C5.81444 20.122 1.67683 15.9843 1.67683 10.8994C1.67683 5.81444 5.81444 1.67683 10.8994 1.67683C15.9843 1.67683 20.122 5.81444 20.122 10.8994C20.122 15.9843 15.9843 20.122 10.8994 20.122Z"
+                                        fill="#CFB62C" />
+                                    <path
+                                        d="M10.899 12.8568C11.3622 12.8568 11.7374 12.4816 11.7374 12.0184V5.31107C11.7374 4.84784 11.3622 4.47266 10.899 4.47266C10.4357 4.47266 10.0605 4.84784 10.0605 5.31107V12.0184C10.0605 12.4816 10.4357 12.8568 10.899 12.8568Z"
+                                        fill="#CFB62C" />
+                                    <path
+                                        d="M12.296 15.9307C12.296 17.7941 9.50195 17.7941 9.50195 15.9307C9.50195 14.0674 12.296 14.0674 12.296 15.9307Z"
+                                        fill="#CFB62C" />
+                                </svg>
+                                تصویر آپلود شده باید با پسوند jpg و یا jpeg باشد و حداکثر حجم مجاز برای آپلود، 100
+                                کیلوبایت است.
+                            </p>
+                            <div class="formupload2 flex flex-col gap-[15px] mt-[30px]">
+                                <h4 class="text-[18px] text-black leading-[20px]">فرم دو:</h4>
+                                <p class="mt-[24px] text-black leading-[20px]">از این قسمت می توانید فرم قوانین و مقررات
+                                    غرفه را دانلود بفرمایید.</p>
+                                <a class="w-[480px] rounded-[8px] flex justify-center items-center h-[50px] bg-primary"
+                                    href="">
+                                    دانلود
+                                    <svg width="18" height="23" viewBox="0 0 18 23" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_242_3938)">
+                                            <path
+                                                d="M9.00009 0.427734C8.74961 0.427734 8.50939 0.524663 8.33227 0.697196C8.15515 0.86973 8.05565 1.10374 8.05565 1.34773V15.6077L2.17176 9.84853C2.08401 9.76306 1.97984 9.69525 1.86519 9.64899C1.75054 9.60273 1.62766 9.57892 1.50356 9.57892C1.37947 9.57892 1.25659 9.60273 1.14194 9.64899C1.02729 9.69525 0.923118 9.76306 0.835369 9.84853C0.747621 9.93401 0.678016 10.0355 0.630527 10.1472C0.583037 10.2589 0.558594 10.3786 0.558594 10.4994C0.558594 10.6203 0.583037 10.74 0.630527 10.8517C0.678016 10.9634 0.747621 11.0649 0.835369 11.1503L8.33426 18.4551C8.3783 18.497 8.42567 18.5355 8.47592 18.5701H8.5137L8.63648 18.6345H8.69315C8.73258 18.6501 8.77381 18.6609 8.81593 18.6667C8.8771 18.6737 8.93891 18.6737 9.00009 18.6667C9.06286 18.6735 9.12621 18.6735 9.18898 18.6667C9.22944 18.6603 9.26903 18.6495 9.30704 18.6345H9.3637L9.48648 18.5701H9.52426L9.67065 18.4551L17.1648 11.1503C17.342 10.9777 17.4416 10.7436 17.4416 10.4994C17.4416 10.2553 17.342 10.0212 17.1648 9.84853C16.9876 9.67591 16.7472 9.57892 16.4966 9.57892C16.246 9.57892 16.0056 9.67591 15.8284 9.84853L9.94454 15.5847V1.34773C9.94454 1.10374 9.84503 0.86973 9.66792 0.697196C9.4908 0.524663 9.25057 0.427734 9.00009 0.427734Z"
+                                                fill="black" />
+                                            <path
+                                                d="M1.50109 22.5724H16.4989C16.7493 22.5724 16.9896 22.4755 17.1667 22.303C17.3438 22.1304 17.4433 21.8964 17.4433 21.6524C17.4433 21.4084 17.3438 21.1744 17.1667 21.0019C16.9896 20.8293 16.7493 20.7324 16.4989 20.7324H1.50109C1.2506 20.7324 1.01038 20.8293 0.833263 21.0019C0.656145 21.1744 0.556641 21.4084 0.556641 21.6524C0.556641 21.8964 0.656145 22.1304 0.833263 22.303C1.01038 22.4755 1.2506 22.5724 1.50109 22.5724Z"
+                                                fill="black" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_242_3938">
+                                                <rect width="17" height="23" fill="white" transform="translate(0.5)" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+
+
+                                </a>
+
+                            </div>
+                            <p class="flex flex-row justify-start leading-[22px] items-center mt-[14px]"><svg
+                                    style="margin: 0px 3px;" width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.8994 0C4.89017 0 0 4.89017 0 10.8994C0 16.9086 4.89017 21.7988 10.8994 21.7988C16.9086 21.7988 21.7988 16.9086 21.7988 10.8994C21.7988 4.89017 16.9086 0 10.8994 0ZM10.8994 20.122C5.81444 20.122 1.67683 15.9843 1.67683 10.8994C1.67683 5.81444 5.81444 1.67683 10.8994 1.67683C15.9843 1.67683 20.122 5.81444 20.122 10.8994C20.122 15.9843 15.9843 20.122 10.8994 20.122Z"
+                                        fill="#CFB62C" />
+                                    <path
+                                        d="M10.899 12.8568C11.3622 12.8568 11.7374 12.4816 11.7374 12.0184V5.31107C11.7374 4.84784 11.3622 4.47266 10.899 4.47266C10.4357 4.47266 10.0605 4.84784 10.0605 5.31107V12.0184C10.0605 12.4816 10.4357 12.8568 10.899 12.8568Z"
+                                        fill="#CFB62C" />
+                                    <path
+                                        d="M12.296 15.9307C12.296 17.7941 9.50195 17.7941 9.50195 15.9307C9.50195 14.0674 12.296 14.0674 12.296 15.9307Z"
+                                        fill="#CFB62C" />
+                                </svg>
+                                تصویر آپلود شده باید با پسوند jpg و یا jpeg باشد و حداکثر حجم مجاز برای آپلود، 100
+                                کیلوبایت است.
+                            </p>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="btctnex flex flex-row justify-between">
+                    <button id="btctnex"
+                        class="btnclicknext w-[480px] h-[50px] ml-[10px] bg-primary rounded-[8px] text-black ">ثبت و
+                        ادامه</button>
+                    <button id="getjson" class="w-[300px] h-[50px] bg-[red] ">JSON</button>
+                    <Basis core="api" run="atclient"
+                        url="http://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/fa/editobject"
+                        method="post"
+                        body="object_edit={##edit.object.value##}&captcha=f250&captchaid=ca6511000001105820"
+                        content-type="application/x-www-form-urlencoded" triggers="edit.object"
+                        if="{##edit.object|(false)##}">
+                    </Basis>
+                    {##edit.object.value##}
+                    <button id="btnclickprv"
+                        class="hiddenbox btnclickprv w-[480px] mr-[10px] h-[50px] bg-primary rounded-[8px] text-black ">برگشت
+                        به
+                        مرحله قبل</button>
+                </div>
+
+                <script>
+                    const getjson = document.querySelector("#getjson")
+                    getjson.addEventListener("click", (e) => {
+                        // const getvalue = document.querySelector(".getvalue")
+                        // const getinput = getvalue.querySelectorAll("input")
+                        // console.log(getinput);
+                        let allData = [];
+
+                        getjson.addEventListener("click", (e) => {
+                            const getvalue = document.querySelector(".getvalue");
+                            const getinput = getvalue.querySelectorAll("input");
+                            getinput.forEach((e) => {
+                                if (e.type == "file") {
+                                    console.log(e.previousSibling.firstChild.currentSrc);
+                                }
+                                if (e.type == "file") {
+
+                                    if (e.previousSibling.firstChild.currentSrc != "") {
+                                        const jsonData = {
+                                            "propId": parseInt(e.id),
+                                            "multi": false,
+
+                                            "added": [
+                                                {
+                                                    "parts": [
+
+                                                        {
+
+                                                            "part": 1,
+                                                            "values": [
+                                                                {
+                                                                    "value": {
+                                                                        'content': `${e.previousSibling.firstChild.currentSrc}`,
+                                                                        "name": "testMap.png",
+                                                                        "size": 114551,
+                                                                        "type": "image/png"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                        const existingData = allData.find(data => data.propId == e.id);
+                                        if (!existingData) {
+                                            allData.push(jsonData);
+                                        }
+                                    }
+
+                                } else {
+                                    if (e.value != "") {
+                                        const jsonData = {
+                                            "propId": parseInt(e.id),
+                                            "multi": false,
+
+                                            "added": [
+                                                {
+                                                    "parts": [
+
+                                                        {
+
+                                                            "part": 1,
+                                                            "values": [
+                                                                {
+                                                                    "value": e.value
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        };
+
+                                        const existingData = allData.find(data => data.propId == e.id);
+                                        if (!existingData) {
+                                            allData.push(jsonData);
+                                        }
+                                    }
+
+                                }
+
+
+
+                            });
+                            console.log(allData);
+
+                            const objectsend =
+                            {
+                                // "baseVocab": "http://schema.site/FA/vo",
+                                // "lid": 1,
+                                // "schemaId": "F8719EEC-702A-4589-877C-490B928BC0D8",
+                                // "paramUrl": "/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت",
+                                // "schemaVersion": "4.8",
+                                "lid": 1,
+                                "paramUrl": "/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت",
+                                "schemaId": "F8719EEC-702A-4589-877C-490B928BC0D8",
+                                "schemaVersion": "4.8",
+                                "properties": allData
+                            }
+                            console.log(objectsend);
+                            $bc.setSource('edit.object', {
+                                value: JSON.stringify(objectsend),
+                            })
+
+                        });
+
+
+
+
+
+
+
+                        // {
+                        //     "propId": 5919,
+                        //         "multi": false,
+                        //             "added": [
+                        //                 {
+                        //                     "parts": [
+                        //                         {
+                        //                             "part": 1,
+                        //                             "values": [
+                        //                                 {
+                        //                                     "value": "asdfds"
+                        //                                 }
+                        //                             ]
+                        //                         }
+                        //                     ]
+                        //                 }
+                        //             ]
+                        // },
+
+                    })
+
+                </script>
+
+
+
+
+
+
+
+
+
+            </div>
+            <div
+                class="popup w-full h-[100vh] sectionLast bg-secondary hidden overflow-y-auto flex-col absolute z-50  top-0 bottom-0 right-0 left-0 px-[112px] py-[48px]">
+                <div>
+                    <button class="closepopup">
+                        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.1327 30.0827L7.91602 27.866L16.7827 18.9993L7.91602 10.1327L10.1327 7.91602L18.9993 16.7827L27.866 7.91602L30.0827 10.1327L21.216 18.9993L30.0827 27.866L27.866 30.0827L18.9993 21.216L10.1327 30.0827Z"
+                                fill="black" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- ######### -->
+                <div class="w-full h-[600px] ">
+                    <img class="w-full h-[600px]" id="imgmapmain" src="" alt="map">
+                </div>
+                <!-- ######### -->
+                <div>
+                    <div class="flex flex-row items-center justify-between mt-[10px]">
+                        <h3>انتخاب غرفه جدید</h3>
+                        <a id="downlaodimgmap" href="" download="GFG">
+                            <button
+                                class="w-[211px] h-[40px] text-[14px] border border-black rounded-[5px] fonbt-[300]">دانلود
+                                نقشه پلان </button>
+                        </a>
+                    </div>
+                    <button class="addnewmap w-[480px] h-[42px] bg-primary text-black rounded-[5px] ">ثبت</button>
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <!-- #################### -->
+            <div class="hiddenbox w-full h-full bg-secondary">div3</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div4</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div5</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div6</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div7</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div8</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div9</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div10</div>
+        </div>
+
+
+
+    </div>
+
+
+    <!-- <Basis core="api" run="atclient" schemaUrl="https://www.freeform.ir/schema/domainform"
+    
+        paramUrl="/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت"
+        displayMode="new" button="[data-btn-add]" resultSourceId="demo.data" 
+        triggers="db.renew">
+    </Basis> -->
+    <basis core="api"
+        url="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت"
+        method="get" name="api.name" OnProcessed="showSchema" run="atclient"></basis>
+
+</body>
+<script src="http://basiscore.net/_js/basiscore-2.36.2.min.js"></script>
+<script src="http://cdn.basiscore.net/_js/alasql.min.js"></script>
+<script>
+    var host = {
+        debug: false,
+
+        settings: {
+
+            'connection.web.callcommand': 'http://127.20.20.64:5500/',
+            "connection.web.trust_login": "https://basiscore.net/apicms",
+            "connection.web.userbehavior": "https://basiscore.net/apicms",
+            'connection.web.basiscore': 'https://basiscore.net/apicms',
+            // 'connection.local.basket': {
+            //     Url: '/js/LocalStorageBasket.js',
+            //     Function: 'LocalBasket'
+            // },
+            // 'connection.web.callcommand'
+            'default.dbsource.verb': 'post',
+            'default.call.verb': 'get',
+            'default.viewCommand.groupColumn': 'prpid',
+            'default.dmnid': '4880',
+            'default.binding.regex': '\\{##([^#]*)##\\}'
+
+        }
+    }
+</script>
+<script>
+    
+
+
+
+    const sctionOne = document.querySelector(".sction-One")
+    const sctiontwo = document.querySelector(".sction-two")
+    const sectionOne = document.querySelector(".sectionOne")
+    const sectionTwo = document.querySelector(".sectionTwo")
+    const sectionTree = document.querySelector(".sectionTree")
+    const sectionFor = document.querySelector(".sectionFor")
+    const sectionFive = document.querySelector(".sectionFive")
+
+    const sectionLast = document.querySelector(".sectionLast")
+
+
+    async function showSchema(args) {
+        const response = args.response;
+        const json = await response.json();
+        const inputdata = json.sources[0].data[0].questions
+        const section = json.sources[0].data[0].sections
+        section.forEach((e) => {
+            const creatediv = document.createElement("div")
+            creatediv.classList = "styledivmain"
+            const tagp = document.createElement("p")
+            tagp.classList = "styletagp"
+            tagp.innerText = e.title
+            creatediv.appendChild(tagp)
+            const maindiv = document.createElement("div")
+            maindiv.classList = "stylediv showgrid"
+            maindiv.setAttribute("sectionud", e.id)
+            maindiv.setAttribute("section-des", e.description)
+            creatediv.appendChild(maindiv)
+
+            creatediv.setAttribute("data-sectionud", e.id)
+
+
+            if (e.description == "tab-1") { sectionOne.appendChild(creatediv) }
+            if (e.description == "tab-2") { sectionTwo.appendChild(creatediv) }
+            if (e.description == "tab-3") { sectionTree.appendChild(creatediv) }
+            if (e.description == "tab-4") { sectionFor.appendChild(creatediv) }
+            if (e.description == "tab-5") { sectionFive.appendChild(creatediv) }
+
+            if (e.description == "last-section") { sectionLast.appendChild(creatediv) }
+        })
+
+
+
+
+
+
+
+
+
+        inputdata.forEach((e, i) => {
+            // console.log(e.parts[0].viewType);
+            let input = null;
+            let label = null;
+            const getprpid = document.querySelectorAll("div[data-sectionud]")
+            if (e.parts[0].viewType == "text") {
+                const divsection = document.createElement("div")
+                divsection.classList = "divstyle"
+                const inputtext = document.createElement("input")
+                inputtext.id = e.prpId
+                inputtext.setAttribute("id-input", e.prpId)
+                inputtext.classList = "inputstyle"
+                inputtext.type = "text"
+                inputtext.placeholder = e.title
+                if (e.parts[0].cssClass != undefined) {
+                    inputtext.classList = `${e.parts[0].cssClass} inputstyle`
+                }
+
+                divsection.appendChild(inputtext)
+
+                // input = document.createElement("input")
+
+                if (e.parts[0].validations && e.parts[0].validations.required != undefined) {
+                    inputtext.setAttribute("validation", '')
+                    const labeltag = document.createElement('label');
+                    labeltag.classList = "stylelableinput"
+                    labeltag.innerText = "*"
+                    divsection.appendChild(labeltag)
+                }
+
+
+
+
+
+                // const getprpid = 
+                // creatediv.appendChild(input)
+
+                input = divsection
+            }
+            if (e.parts[0].viewType == "select") {
+                input = document.createElement("select")
+                input.classList = "inputstyle"
+                input.placeholder = e.title
+                // creatediv.appendChild(input)
+            }
+
+            // <img id="previewImage" src="" alt="Preview" style="display: none; width: 300px; height: auto;">
+            if (e.parts[0].viewType == "upload") {
+
+                const divsectionimg = document.createElement("div")
+                // 
+                divsectionimg.classList = "styleshowto"
+                const warninginp = document.createElement("div")
+                warninginp.classList = "stylewarninginp"
+                const warningtagp = document.createElement("p")
+                warningtagp.innerText = "تصویر آپلود شده باید با پسوند jpg و یا jpeg باشد و حداکثر حجم مجاز برای آپلود، 100 کیلوبایت است."
+                warninginp.appendChild(warningtagp)
+
+                divsectionimg.appendChild(warninginp)
+
+
+                const divimg = document.createElement("div")
+                divimg.style.display = "none"
+                divimg.classList.add("styledivimg")
+                const labelupload = document.createElement("label")
+                labelupload.classList = "custom-file-upload"
+                labelupload.innerHTML = ` ${e.title}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 20H18M12 16V4M12 4L15.5 7.5M12 4L8.5 7.5" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`
+
+
+                labelupload.htmlFor = e.prpId
+
+                const myimg = document.createElement("img")
+                myimg.alt = "Preview"
+                myimg.style.display = 'none'
+                myimg.className = `styleimgdiv ${e.prpId}`
+
+                const getfile = document.createElement("input")
+                getfile.type = "file"
+                getfile.id = e.prpId
+                getfile.classList.add("inputstyle")
+                getfile.placeholder = e.title
+                divsectionimg.appendChild(labelupload)
+                divimg.appendChild(myimg)
+                divsectionimg.appendChild(divimg)
+                divsectionimg.appendChild(getfile)
+
+                getfile.addEventListener('change', function () {
+
+                    const file = this.files[0]
+                    if (file) {
+                        // divsectionimg.removeClass('hover')
+                        labelupload.innerHTML = ` ${e.title}                        
+                        <span>بارگذاری مجدد</span> 
+                        `
+
+                        labelupload
+                        const reader = new FileReader()
+                        reader.onload = function (e) {
+                            myimg.src = e.target.result
+                            myimg.style.display = 'block'
+                            divimg.style.display = "flex"
+                        }
+
+                        reader.readAsDataURL(file)
+                    }
+                });
+
+                if (e.parts[0].caption == "form1") {
+                    // labelupload.innerHTML = "آپلود"
+                    document.querySelector(".formupload1").appendChild(labelupload)
+                    labelupload.innerHTML = `آپلود <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.757812 25.108C0.757812 24.4681 1.26774 23.9473 1.89418 23.9473H23.1073C23.7337 23.9473 24.2436 24.4681 24.2436 25.108C24.2436 25.7493 23.7337 26.2687 23.1073 26.2687H1.89418C1.26774 26.2687 0.757812 25.7493 0.757812 25.108Z" fill="black"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.88 10.4516C20.4368 10.9057 19.7167 10.9057 19.2735 10.4516L12.5007 3.53523L5.72801 10.4516C5.28481 10.9057 4.56466 10.9057 4.12146 10.4516C3.67826 9.99891 3.67826 9.26333 4.12146 8.81063L11.6967 1.07303C12.1414 0.618885 12.8601 0.618885 13.3047 1.07303L20.88 8.81063C21.3232 9.26333 21.3232 9.99891 20.88 10.4516Z" fill="black"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5016 20.0774C11.8737 20.0774 11.3652 19.5566 11.3652 18.9167V3.44001C11.3652 2.7987 11.8737 2.2793 12.5016 2.2793C13.1295 2.2793 13.638 2.7987 13.638 3.44001V18.9167C13.638 19.5566 13.1295 20.0774 12.5016 20.0774Z" fill="black"/>
+                                            </svg>
+                                            `
+                    labelupload.classList = "styleinputgetform"
+                }
+                if (e.parts[0].caption == "form2") {
+                    document.querySelector(".formupload2").appendChild(labelupload)
+                    labelupload.innerHTML = `آپلود <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.757812 25.108C0.757812 24.4681 1.26774 23.9473 1.89418 23.9473H23.1073C23.7337 23.9473 24.2436 24.4681 24.2436 25.108C24.2436 25.7493 23.7337 26.2687 23.1073 26.2687H1.89418C1.26774 26.2687 0.757812 25.7493 0.757812 25.108Z" fill="black"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.88 10.4516C20.4368 10.9057 19.7167 10.9057 19.2735 10.4516L12.5007 3.53523L5.72801 10.4516C5.28481 10.9057 4.56466 10.9057 4.12146 10.4516C3.67826 9.99891 3.67826 9.26333 4.12146 8.81063L11.6967 1.07303C12.1414 0.618885 12.8601 0.618885 13.3047 1.07303L20.88 8.81063C21.3232 9.26333 21.3232 9.99891 20.88 10.4516Z" fill="black"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5016 20.0774C11.8737 20.0774 11.3652 19.5566 11.3652 18.9167V3.44001C11.3652 2.7987 11.8737 2.2793 12.5016 2.2793C13.1295 2.2793 13.638 2.7987 13.638 3.44001V18.9167C13.638 19.5566 13.1295 20.0774 12.5016 20.0774Z" fill="black"/>
+                                            </svg>
+                                            `
+                    labelupload.classList = "styleinputgetform"
+
+                }
+                input = divsectionimg
+            }
+
+            if (e.parts[0].viewType == "select") {
+                input = document.createElement("select")
+                input.classList = "inputstyle"
+                input.placeholder = e.title
+                // creatediv.appendChild(input)
+            }
+            if (e.parts[0].viewType == "checklist") {
+                // link img msap
+                // e.parts[0].link
+
+
+                // create container div Keeper
+                const containerchecklist = document.createElement("div")
+                containerchecklist.classList = "containerchecklist"
+                const btndownload = document.createElement("button")
+                btndownload.innerText = "دانلود"
+                btndownload.classList = "btndownloadmap"
+                const maindivchecklist = document.createElement("div")
+                const tag3 = document.createElement("h3")
+                const tagp = document.createElement("p")
+                const tagpp = document.createElement("p")
+                tagpp.classList = "stylecheckp"
+                tagp.innerHTML = "مشاهده"
+                tagpp.innerHTML = `
+                دانلود
+                <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_319_1940)">
+                    <path d="M5.77668 0.427734C5.60701 0.427734 5.44429 0.493392 5.32431 0.610262C5.20433 0.727132 5.13693 0.885643 5.13693 1.05092V10.7103L1.15132 6.80918C1.09188 6.75128 1.02131 6.70535 0.943652 6.67401C0.865992 6.64268 0.782755 6.62655 0.698696 6.62655C0.614637 6.62655 0.5314 6.64268 0.45374 6.67401C0.376079 6.70535 0.305514 6.75128 0.246075 6.80918C0.186637 6.86708 0.139488 6.93582 0.10732 7.01147C0.0751514 7.08712 0.0585938 7.1682 0.0585938 7.25008C0.0585938 7.33197 0.0751514 7.41305 0.10732 7.4887C0.139488 7.56435 0.186637 7.63309 0.246075 7.69099L5.32566 12.6391C5.35549 12.6675 5.38758 12.6935 5.42162 12.717H5.44721L5.53038 12.7606H5.56876C5.59547 12.7712 5.6234 12.7785 5.65193 12.7824C5.69337 12.7872 5.73524 12.7872 5.77668 12.7824C5.8192 12.787 5.86211 12.787 5.90463 12.7824C5.93203 12.7781 5.95885 12.7708 5.9846 12.7606H6.02298L6.10615 12.717H6.13174L6.2309 12.6391L11.3073 7.69099C11.4273 7.57405 11.4948 7.41546 11.4948 7.25008C11.4948 7.08471 11.4273 6.92611 11.3073 6.80918C11.1872 6.69224 11.0244 6.62655 10.8547 6.62655C10.6849 6.62655 10.5221 6.69224 10.402 6.80918L6.41643 10.6948V1.05092C6.41643 0.885643 6.34902 0.727132 6.22905 0.610262C6.10907 0.493392 5.94635 0.427734 5.77668 0.427734Z" fill="white"/>
+                    <path d="M0.696387 15.428H10.8556C11.0252 15.428 11.1879 15.3624 11.3079 15.2455C11.4279 15.1286 11.4953 14.9701 11.4953 14.8048C11.4953 14.6395 11.4279 14.481 11.3079 14.3642C11.1879 14.2473 11.0252 14.1816 10.8556 14.1816H0.696387C0.526715 14.1816 0.363994 14.2473 0.244019 14.3642C0.124043 14.481 0.0566406 14.6395 0.0566406 14.8048C0.0566406 14.9701 0.124043 15.1286 0.244019 15.2455C0.363994 15.3624 0.526715 15.428 0.696387 15.428Z" fill="white"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_319_1940">
+                    <rect width="12" height="16" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+
+                `
+
+                tag3.classList = "styleh3box"
+                tag3.innerText = e.title
+                maindivchecklist.appendChild(tag3)
+                maindivchecklist.appendChild(tagp)
+                maindivchecklist.appendChild(tagpp)
+
+                maindivchecklist.classList = "divshoboxg"
+                input = document.createElement("input")
+                input.type = "checkbox"
+                input.id = e.prpId
+                input.placeholder = e.title
+                maindivchecklist.appendChild(input)
+                containerchecklist.appendChild(maindivchecklist)
+                containerchecklist.appendChild(btndownload)
+
+                input = containerchecklist
+
+
+                containerchecklist.addEventListener("click", (s) => {
+                    // console.log("OK");
+                    document.querySelector(".popup").style.display = "flex"
+                    document.querySelector("#imgmapmain").src = e.parts[0].link
+                    document.querySelector("#downlaodimgmap").href = e.parts[0].link
+
+
+
+                })
+            }
+            getprpid.forEach((prpid) => {
+                // console.log(prpid);
+                if (parseInt(prpid.dataset.sectionud) == e.sectionId) {
+                    prpid.children[1].append(input)
+                }
+
+            })
+        })
+
+        function readFileAsDataURL(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = () => reject(new Error('err p'));
+                if (file != undefined) {
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        const getvalue = document.querySelectorAll(".getvalue>div")
+        const btnclicknext = document.querySelector(".btnclicknext")
+        const btnclickprv = document.querySelector(".btnclickprv")
+        const btctnex = document.querySelector(".btctnex")
+        const sectionud = document.querySelectorAll(".sectionud")
+
+
+
+
+        const setiontitle = document.querySelectorAll(".setiontitle>span>h5");
+
+
+        let currentIndex = localStorage.getItem('myNumber');
+        if (currentIndex === null) {
+            currentIndex = 0;
+            localStorage.setItem('myNumber', currentIndex);
+        }
+        currentIndex = parseInt(currentIndex);
+        localStorage.setItem('myNumber', currentIndex);
+        getvalue.forEach((e) => {
+            e.classList.add("hiddenbox");
+            e.classList.remove("showbox");
+        });
+        getvalue[currentIndex].classList.remove("hiddenbox");
+        getvalue[currentIndex].classList.add("showbox");
+        if (currentIndex == 0) {
+            const backbtn = document.querySelector("#btnclickprv")
+            backbtn.classList.add("hiddenbox")
+        } else {
+            const backbtn = document.querySelector("#btnclickprv")
+            backbtn.classList.remove("hiddenbox")
+        }
+        setiontitle.forEach((h5, index) => {
+            if (index < currentIndex) {
+                h5.style.color = '#194A96';
+            } else if (index > currentIndex) {
+                h5.style.color = '#828282';
+            } else {
+                h5.style.color = '#000';
+                if (h5.querySelector("span>svg") != null) {
+                    h5.querySelector("span>svg").style.stroke = "#000"
+                }
+            }
+        });
+        // setiontitle.length
+        let mytext = false
+        btctnex.addEventListener("click", async (e) => {
+            const setiontitle = document.querySelectorAll(".setiontitle>span>h5");
+            console.log(setiontitle);
+            setiontitle.forEach((h5, index) => {
+                console.log("currentIndex", currentIndex);
+                console.log("index", index);
+                // console.log(h5.querySelector("span>svg"));
+                const getindex = currentIndex + 1
+                const getindexf = currentIndex - 2
+                if (index < getindex) {
+                    h5.style.color = '#194A96';
+                } if (index > getindex) {
+                    h5.style.color = '#828282';
+                } if (index == getindex) {
+                    h5.style.color = '#000';
+                    if (h5.querySelector("span>svg") != null) {
+                        h5.querySelector("span>svg").style.stroke = "#000"
+                    }
+
+                }
+            });
+            console.log("currentIndex",currentIndex);
+            if (currentIndex == 0) {
+                const backbtn = document.querySelector("#btnclickprv")
+                backbtn.classList.add("hiddenbox")
+            }
+            else {
+                const backbtn = document.querySelector("#btnclickprv")
+                backbtn.classList.remove("hiddenbox")
+            }
+            const getsectiontitle = setiontitle[currentIndex].id
+            const getsection = document.querySelectorAll(`[section-des="${getsectiontitle}`)
+            if (e.target.id == "btctnex") {
+                let allInputsFilled = true
+                getsection.forEach((e) => {
+                    const geinp = e.querySelectorAll("input")
+                    geinp.forEach((s) => {
+                        if (s.getAttribute("validation") != undefined) {
+                            if (s.value == '' || s.value == null) {
+                                console.log("خالیه")
+                                if (s.parentElement.querySelector("label")) {
+                                    s.parentElement.querySelector("label").classList.add("warninginput")
+                                    s.parentElement.querySelector("label").innerHTML = `پر کردن این فیلد اجباری است <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_512_1692)">
+                                                    <path d="M11.001 0.101562C4.99173 0.101562 0.101562 4.99173 0.101562 11.001C0.101562 17.0102 4.99173 21.9003 11.001 21.9003C17.0102 21.9003 21.9003 17.0102 21.9003 11.001C21.9003 4.99173 17.0102 0.101562 11.001 0.101562ZM11.001 20.2235C5.916 20.2235 1.77839 16.0859 1.77839 11.001C1.77839 5.916 5.916 1.77839 11.001 1.77839C16.0859 1.77839 20.2235 5.916 20.2235 11.001C20.2235 16.0859 16.0859 20.2235 11.001 20.2235Z" fill="#FF0000"/>
+                                                    <path d="M11.0005 12.9584C11.4638 12.9584 11.8389 12.5832 11.8389 12.1199V5.41263C11.8389 4.9494 11.4638 4.57422 11.0005 4.57422C10.5373 4.57422 10.1621 4.9494 10.1621 5.41263V12.1199C10.1621 12.5832 10.5373 12.9584 11.0005 12.9584Z" fill="#FF0000"/>
+                                                    <path d="M12.3975 16.0323C12.3975 17.8957 9.60352 17.8957 9.60352 16.0323C9.60352 14.1689 12.3975 14.1689 12.3975 16.0323Z" fill="#FF0000"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_512_1692">
+                                                    <rect width="22" height="22" fill="white"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                    </svg>
+                                                    `
+                                }
+
+
+                                s.classList.add("invalivalue")
+                                s.addEventListener("keydown", () => {
+                                    if (s.value != '' || s.value != null) {
+                                        s.classList.remove("invalivalue")
+                                        s.parentElement.querySelector("label").classList.remove("warninginput")
+                                        s.parentElement.querySelector("label").innerHTML = `*`
+                                    }
+                                })
+                                allInputsFilled = false;;
+                            }
+                        }
+                    })
+
+                })
+                // break
+                // if (!allInputsFilled) {
+                //     return; 
+                // }
+                let sections = null
+                if (currentIndex < setiontitle.length - 1) {
+                    const backbtn = document.querySelector("#btnclickprv")
+                    backbtn.classList.remove("hiddenbox")
+                    currentIndex++
+                    localStorage.setItem('myNumber', currentIndex);
+                    getvalue.forEach((e) => {
+                        e.classList.add("hiddenbox");
+                        e.classList.remove("showbox");
+                    });
+                    getvalue[currentIndex].classList.remove("hiddenbox");
+                    getvalue[currentIndex].classList.add("showbox");
+                    sections = document.querySelectorAll(`[section-des="${setiontitle[currentIndex - 1].id}"]`);
+                }                
+                if(currentIndex == setiontitle.length - 2){
+                    console.log(">>>>>>>>");
+                    if(e.target.id == "btctnex"){
+                        e.target.innerText = "تستی"
+                    }
+                }
+                
+                else if (currentIndex == setiontitle.length - 1) {
+                    console.log("OK Thiss");                    
+                    sections = document.querySelectorAll(`[section-des="tab-5"]`);
+                }
+                else {
+                    return;
+                }
+                const mainArray = [];
+                const groupedSections = {};
+                for (const section of sections) {
+                    const sectionArray = [];
+                    const sectionDes = section.getAttribute("section-des");
+                    const inputs = section.querySelectorAll('input');
+                    // get input to set data in local
+                    for (const input of inputs) {
+                        if (input.type === "file") {
+                            if (input.files.length > 0) {
+                                const file = input.files[0];
+                                const inputid = input.id;
+                                const filesize = input.size
+                                const fileContent = await readFileAsDataURL(file);
+                                sectionArray.push({
+                                    fileName: file.name,
+                                    fileContent: fileContent,
+                                    fileId: inputid,
+                                    filesize: filesize
+
+                                });
+                                if (!groupedSections[sectionDes]) {
+                                    groupedSections[sectionDes] = [];
+                                }
+                                groupedSections[sectionDes].push({
+                                    divPropertyId: section.getAttribute("sectionud"),
+                                    section: sectionArray
+                                });
+                            }
+                        } else {
+                            sectionArray.push({
+                                "prpid": input.getAttribute("id-input"),
+                                "value": input.value
+                            });
+                            if (!groupedSections[sectionDes]) {
+                                groupedSections[sectionDes] = [];
+                            }
+                            groupedSections[sectionDes].push({
+                                divPropertyId: section.getAttribute("sectionud"),
+                                section: sectionArray
+                            });
+                        }
+                    }
+
+
+                }
+
+                try {
+                    const existingData = JSON.parse(localStorage.getItem('formData')) || {};
+
+                    for (const key in groupedSections) {
+                        if (!existingData[key]) {
+                            existingData[key] = [];
+                        }
+
+                        groupedSections[key].forEach((newItem) => {
+                            const existingIndex = existingData[key].findIndex((existingItem) => {
+                                return existingItem.divPropertyId === newItem.divPropertyId;
+                            });
+
+                            if (existingIndex !== -1) {
+                                existingData[key][existingIndex] = newItem;
+                            } else {
+                                existingData[key].push(newItem);
+                            }
+                        });
+                    }
+
+                    localStorage.setItem('formData', JSON.stringify(existingData));
+                } catch (error) {
+                    console.error(error);
+                }
+
+
+                // console.log(groupedSections);
+            }
+
+            if (e.target.id == "btnclickprv") {
+
+                if (e.target.id == "btnclickprv") {
+                    if (currentIndex > 0) {
+                        currentIndex--
+                        localStorage.setItem('myNumber', currentIndex);
+                        getvalue.forEach((e) => {
+                            e.classList.add("hiddenbox");
+                            e.classList.remove("showbox");
+                        });
+                        getvalue[currentIndex].classList.remove("hiddenbox");
+                        getvalue[currentIndex].classList.add("showbox");
+                    }
+                    if (currentIndex == 0) {
+                        const backbtn = document.querySelector("#btnclickprv")
+                        backbtn.classList.add("hiddenbox")
+                    }
+                    else {
+                        return;
+                    }
+
+                }
+            }
+            const storedData = localStorage.getItem('formData');
+            const sectionss = document.querySelector(`[section-des="${setiontitleto[currentIndex].id}"]`);
+            const sectionDesValue = sectionss ? sectionss.getAttribute('section-des') : null;
+            const sectaions = document.querySelectorAll(`div[section-des= ${sectionDesValue}]`);
+            const thiste = JSON.parse(storedData)
+            if (storedData == null || storedData == '' || storedData == undefined) {
+                return
+            } else {
+                if (thiste[`${sectionDesValue} `] == undefined) { return console.log("YEP"); }
+                thiste[`${sectionDesValue} `].forEach((e, i) => {
+                    const get = sectaions[i].children
+
+                    e.section.forEach((d, index) => {
+                        get[index].firstChild.value = d.value
+
+                    })
+
+
+                })
+            }
+
+
+        });
+
+
+        const addnewmap = document.querySelector(".addnewmap")
+        const closepopup = document.querySelector(".closepopup")
+        const popup = document.querySelector(".popup")
+        closepopup.addEventListener("click", () => {
+            popup.style.display = "none"
+        })
+        addnewmap.addEventListener("click", () => {
+            popup.style.display = "none"
+        })
+
+        // ################################
+        // const storedData = JSON.parse(localStorage.getItem('formData'));
+        // if (!storedData) {
+        //     return
+        // }
+        // const sections = document.querySelectorAll('div[sectionud]');
+        // sections.forEach(async(e, i) => {
+        //     const myinput = e.querySelectorAll("input")
+        //     const mylocal =  storedData[i]
+        //     myinput.forEach((s, p) => {
+        //         if (mylocal[p].prpid == s.getAttribute("id-input")){
+        //             console.log(myinput[p]);
+        //             s.value = mylocal[p].value
+        //             //  s.value =  "ok"
+        //         }
+
+        //     })
+        // })
+        // ################################
+
+        const setiontitleto = document.querySelectorAll(".setiontitle>span>h5");
+        const storedData = localStorage.getItem('formData');
+        const sectionss = document.querySelector(`[section-des="${setiontitleto[currentIndex].id}"]`);
+        const sectionDesValue = sectionss ? sectionss.getAttribute('section-des') : null;
+        const sectaions = document.querySelectorAll(`div[section-des= ${sectionDesValue}]`);
+        const thiste = JSON.parse(storedData)
+
+
+
+
+        // thiste[`${ sectionDesValue } `].forEach((e, i) => {
+        // console.log(sectaions);
+
+        // sectaions.forEach((e) => {
+        // const getlocal = thiste[`${ sectionDesValue } `]
+        // console.log(getlocal);
+
+
+        // const get = e.children
+        // e.querySelectorAll("input").forEach((a,i)=>{
+        //     // console.log(getlocal);
+        //     // console.log(a);
+        // })
+
+        // })
+
+
+        // console.log(sectionDesValue);
+        // console.log(sectaions);
+        // console.log(sections);
+        // console.log(thiste);
+        // console.log(thiste[`${ sectionDesValue } `]);
+        // const thiste = JSON.parse(storedData)
+        try {
+            if (storedData == null || storedData == '' || storedData == undefined) {
+                return
+
+            } else {
+                if (thiste[sectionDesValue] == undefined) return console.log("i dont know");
+                thiste[sectionDesValue].forEach((e, i) => {
+                    const get = sectaions[i].children
+                    e.section.forEach((d, index) => {
+                        console.log(d);
+                        get[index].firstChild.value = d.value
+                        if (get[index].querySelector("img")) {
+                            get[index].querySelector("img").src = d.fileContent
+                            // get[index].querySelector("img").id = d.fileName
+                            // get[index].querySelector("img").setAttribute("fileName" ,)
+                            // get[index].querySelector("img").setAttribute("filesize" ,d.filesize)
+
+                            get[index].querySelector("img").style.display = "flex"
+                        }
+                    })
+                })
+            }
+        } catch (error) {
+            console.error(error);
+        }
+
+
+
+
+        // console.log(currentIndex);
+        // console.log(thiste['tab-1']);
+
+
+        // console.log(typeof(storedData));
+        // const jsonString = JSON.parse(storedData);
+        // console.log(typeof(jsonString));
+
+        try {
+            const storedData = localStorage.getItem('formData');
+
+
+            if (!storedData) { return; }
+            const mainArray = JSON.parse(storedData);
+            const sections = document.querySelectorAll('div.stylediv[sectionud]');
+            // console.log("sections", sections);
+            sections.forEach((section, sectionIndex) => {
+                console.log(mainArray[sectionIndex]);
+                if (!mainArray[sectionIndex]) return;
+                const sectionData = mainArray[sectionIndex];
+                const inputs = section.querySelectorAll('input.inputstyle');
+                inputs.forEach((input) => {
+                    const inputData = sectionData.find(item => item.prpid === input.getAttribute("id-input"));
+                    if (inputData && inputData.value) {
+                        input.value = inputData.value;
+                    }
+
+                });
+            });
+        } catch (error) {
+            console.error(error);
+        }
+
+        // ################################################################################################                
+        function autocompleteField(element, url) {
+            const input = document.querySelector(element);
+            input.addEventListener("input", function () {
+                const value = this.value;
+                closeAllLists();
+
+                if (!value) return;
+
+                const encodedValue = encodeURIComponent(value);
+                const apiUrl = `${url}=${encodedValue}`;
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const suggestions = data;
+                        const list = document.createElement("div");
+                        list.setAttribute("class", "autocomplete-items");
+                        this.parentNode.appendChild(list);
+
+                        fetch(apiUrl)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                // console.log('Received data:', data); 
+                                if (!Array.isArray(data)) {
+                                    // console.error('Data is not an array:', data);
+                                    return;
+                                }
+
+                                const suggestions = data;
+
+                                // const list = document.createElement("div");
+                                // list.setAttribute("class", "autocomplete-items");
+                                // input.parentNode.appendChild(list);
+
+                                suggestions.forEach(suggestion => {
+                                    const suggestionText = suggestion.value;
+
+                                    if (typeof suggestionText !== 'string') {
+                                        console.error('Suggestion value is not a string:', suggestionText);
+                                        return;
+                                    }
+
+                                    const item = document.createElement("div");
+                                    item.setAttribute("class", "autocomplete-item");
+                                    item.innerHTML = "<strong>" + suggestionText.substr(0, value.length) + "</strong>";
+                                    item.innerHTML += suggestionText.substr(value.length);
+                                    item.addEventListener("click", function () {
+                                        input.value = suggestionText;
+                                        closeAllLists();
+                                    });
+                                    list.appendChild(item);
+                                });
+                            })
+                            .catch(error => console.error('Error fetching data:', error));
+
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            });
+
+            function closeAllLists() {
+                const items = document.querySelectorAll(".autocomplete-items");
+                items.forEach(item => item.remove());
+            }
+
+            document.addEventListener("click", function (e) {
+                closeAllLists();
+            });
+
+        }
+        autocompleteField(".country-input", "https://data.basiscore.net/fa/bc/%DA%A9%D8%B4%D9%88%D8%B1/q/fix?&term")
+        autocompleteField(".city-input", "https://data.basiscore.net/fa/bc/%D8%B4%D9%87%D8%B1/q/fix?term=")
+        autocompleteField(".province-input", "https://data.basiscore.net/fa/bc/%D8%A7%D8%B3%D8%AA%D8%A7%D9%86/q/fix?term=")
+
+    }
+
+
+
+
+
+
+</script>
+
+</html>
