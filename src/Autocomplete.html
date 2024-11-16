@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .autocomplete-items {
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            position: absolute;
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+
+        .autocomplete-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .autocomplete-item:hover {
+            background-color: #e9e9e9;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Autocomplete example</h2>
+    <input id="autocomplete-input" type="text" placeholder="Type something...">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const input = document.getElementById("autocomplete-input");
+
+            input.addEventListener("input", function () {
+                const value = this.value;
+                closeAllLists();
+                if (!value) return;
+                const encodedValue = encodeURIComponent(value);
+                const apiUrl = `https://data.basiscore.net/fa/bc/%DA%A9%D8%B4%D9%88%D8%B1/q/fix?&term=${encodedValue}`;
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const suggestions = data;
+                        const list = document.createElement("div");
+                        list.setAttribute("class", "autocomplete-items");
+                        this.parentNode.appendChild(list);
+
+                        fetch(apiUrl)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log('Received data:', data)
+                                if (!Array.isArray(data)) {
+                                    console.error('Data is not an array:', data);
+                                    return;
+                                }
+
+                                const suggestions = data;
+
+                                const list = document.createElement("div");
+                                list.setAttribute("class", "autocomplete-items");
+                                input.parentNode.appendChild(list);
+
+                                suggestions.forEach(suggestion => {
+                                    const suggestionText = suggestion.value
+
+                                    if (typeof suggestionText !== 'string') {
+                                        console.error('Suggestion value is not a string:', suggestionText);
+                                        return;
+                                    }
+
+                                    const item = document.createElement("div");
+                                    item.setAttribute("class", "autocomplete-item");
+                                    item.innerHTML = "<strong>" + suggestionText.substr(0, value.length) + "</strong>";
+                                    item.innerHTML += suggestionText.substr(value.length);
+                                    item.addEventListener("click", function () {
+                                        input.value = suggestionText;
+                                        closeAllLists();
+                                    });
+                                    list.appendChild(item);
+                                });
+                            })
+                            .catch(error => console.error('Error fetching data:', error));
+
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            });
+
+            function closeAllLists() {
+                const items = document.querySelectorAll(".autocomplete-items");
+                items.forEach(item => item.remove());
+            }
+
+            document.addEventListener("click", function (e) {
+                closeAllLists();
+            });
+        });
+    </script>
+</body>
+
+</html>

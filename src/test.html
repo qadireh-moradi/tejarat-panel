@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/input.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="getvalue">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+    </div>
+    <div class="getvalue">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="file" id="fileInput2" accept="image/*">
+        <img id="previewImage2" src="" alt="Preview" style="display: none; width: 300px; height: auto;">
+    </div>
+    <div class="getvalue">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="text" value="" placeholder="مقدار ها را وارد کنید">
+        <input type="file" id="fileInput" accept="image/*">
+        <img id="previewImage" src="" alt="Preview" style="display: none; width: 300px; height: auto;">
+        <input type="file" id="fileInput2" accept="image/*">
+        <img id="previewImage2" src="" alt="Preview" style="display: none; width: 300px; height: auto;">
+    </div>
+    <button class="btnget">Get value</button>
+
+
+    <!-- <input type="file" id="fileInput" accept="image/*">
+    <img id="previewImage" src="" alt="Preview" style="display: none; width: 300px; height: auto;"> -->
+
+
+    <script>
+        const myimg = document.createElement("img")
+        myimg.alt = "Preview"
+        console.log(myimg);
+
+
+        document.getElementById('fileInput').addEventListener('change', function () {
+            const file = this.files[0];  
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById('previewImage');
+                    img.src = e.target.result;  
+                    img.style.display = 'block';  
+                }
+                reader.readAsDataURL(file); 
+            }
+        });
+    </script>
+</body>
+<script>
+document.querySelector('.btnget').addEventListener('click', async function () {
+    const containers = document.querySelectorAll('.getvalue');
+    let dataArray = [];
+
+    for (const container of containers) {
+        let containerData = {
+            textValues: [],
+        };
+
+        const textInputs = container.querySelectorAll('input');
+        for (const input of textInputs) {
+            if (input.type === "text") {
+                containerData.textValues.push(input.value);
+            }
+
+            if (input.type === "file" && input.files.length > 0) {
+                const file = input.files[0];
+                const fileContent = await readFileAsDataURL(file); 
+                containerData.textValues.push({
+                    fileName: file.name,
+                    fileContent: fileContent  
+                });
+            }
+        }
+
+        dataArray.push(containerData);
+    }
+
+     localStorage.setItem('formData', JSON.stringify(dataArray));
+});
+
+ function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+    });
+}
+
+ document.addEventListener('DOMContentLoaded', function () {
+    const storedData = localStorage.getItem('formData');
+    if (storedData) {
+        const dataArray = JSON.parse(storedData);
+        const containers = document.querySelectorAll('.getvalue');
+
+        dataArray.forEach((containerData, containerIndex) => {
+            const container = containers[containerIndex];
+
+            if (container) {
+                 const textInputs = container.querySelectorAll('input[type="text"]');
+                containerData.textValues.forEach((textValue, index) => {
+                    if (textInputs[index]) {
+                        textInputs[index].value = textValue;
+                    }
+                });
+
+                 const fileInputs = container.querySelectorAll('input[type="file"]');
+                containerData.fileValues.forEach((fileData, index) => {
+                    if (fileInputs[index]) {
+                        const imgElement = fileInputs[index].nextElementSibling;  
+                        if (imgElement && imgElement.tagName === 'IMG') {
+                            imgElement.src = fileData.fileContent;
+                            imgElement.style.display = 'block';
+                        }
+                    }
+                });
+            }
+        });
+    } else {
+    }
+});
+
+
+
+
+
+
+</script>
+
+</html>

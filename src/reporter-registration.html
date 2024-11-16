@@ -1,0 +1,212 @@
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <title>Document</title>
+</head>
+<body class="font-IRANSansWeb">
+    <basis core="call" file="./src/header.html" run="atclient"></basis>
+    <div class="w-full h-full flex flex-row">
+        <basis core="call" file="./src/sidebar.html" run="atclient"></basis>
+        <div class="dashboardm mt-[100px] pr-[250px] w-full h-full mx-[40px] pt-[56px] bg-white">
+            <div class="showbox w-full h-full bg-secondary px-[61px] py-[45px] flex-col" id="reporterRegistration">
+                <div class="">
+                    <p class="text-[18px] my-4">مشخصات چک ضمانت (تعهد ارزی)</p>
+                    <div class="w-full">
+                        <table class="min-w-full ">
+                            <thead class="bg-tertiary">
+                                <tr>
+                                    <th class="py-2 w-[20%] border-[2px] border-white text-center text-white">نام و نام
+                                        خانوادگی</th>
+                                    <th class="py-2 w-[20%] border-[2px] border-white text-center text-white">تاریخ ثبت
+                                    </th>
+                                    <th class="py-2 w-[20%] border-[2px] border-white text-center text-white">نام
+                                        نمایشکاه</th>
+                                    <th class="py-2 w-[20%] border-[2px] border-white text-center text-white">تاریخ شروع
+                                    </th>
+                                    <th class="py-2 w-[20%] border-[2px] border-white text-center text-white">تاریخ
+                                        پایان</th>
+                                </tr>
+                            </thead>
+                            <tbody class="border border-white bg-tertiarylight">
+                                <tr class="">
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">افشین افشین زر
+                                    </td>
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">1403-02-02</td>
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">ریتیل شو 1402
+                                    </td>
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">1403-04-12</td>
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">1403-04-16</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">افشین افشین زر
+                                    </td>
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">1403-02-02</td>
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">ریتیل شو 1402
+                                    </td>
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">1403-04-12</td>
+                                    <td class="py-2 border-[2px] text-center border-white text-tertiary">1403-04-16</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+                </div>
+                <div class="flex  items-center justify-between">
+                    <p class="my-3 text-lg">ثبت نام خبرنگار</p>
+                </div>
+                <basis core="schema" run="atclient"
+                    schemaUrl="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/0D2116AB-D44E-410E-BA68-70891C673511/fa/پرداخت-چک"
+                    displayMode="new" button="[data-btn-add]" resultSourceId="form.result"
+                    OnRendered="chequepaymentOnRendered">
+                </basis>
+                <basis core='callback' method='onSource' run='AtClient' triggers='form.result'></basis>
+
+                <basis core='api' if='{##edit.object|(false)##}' run='atclient'
+                    url='https://basispanel.ir/schema/domainform/0D2116AB-D44E-410E-BA68-70891C673511/fa/editobject'
+                    method='post' body='object_edit={##edit.object.value##}'
+                    content-type='application/x-www-form-urlencoded' triggers='edit.object'
+                    onprocessed='OnProcessedEditObject'></basis>
+
+                <button id="btctnex" class="btnclicknext  h-[50px] ml-[10px] bg-primary rounded-[8px] text-black "
+                    data-btn-add="">ثبت</button>
+
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+
+
+<script src="http://basiscore.net/_js/basiscore-2.36.2.min.js"></script>
+<script src="http://cdn.basiscore.net/_js/alasql.min.js"></script>
+<script>
+    var host = {
+        debug: false,
+
+        settings: {
+
+            'connection.web.callcommand': 'http://172.20.20.46:5501/',
+            "connection.web.trust_login": "https://basiscore.net/apicms",
+            "connection.web.userbehavior": "https://basiscore.net/apicms",
+            'connection.web.basiscore': 'https://basiscore.net/apicms',
+            // 'connection.local.basket': {
+            //     Url: '/js/LocalStorageBasket.js',
+            //     Function: 'LocalBasket'
+            // },
+            // 'connection.web.callcommand'
+            'default.dbsource.verb': 'post',
+            'default.call.verb': 'get',
+            'default.viewCommand.groupColumn': 'prpid',
+            'default.dmnid': '4880',
+            'default.binding.regex': '\\{##([^#]*)##\\}'
+
+        }
+    }
+
+
+
+    function chequepaymentOnRendered() {
+        // const exhibitioncard = document.querySelector("#reporterRegistration")
+        // console.log(exhibitioncard);
+
+        // const reportersInputs = exhibitioncard.querySelectorAll("[data-sys-input-text],textarea")
+        // const reportersCaptions = exhibitioncard.querySelectorAll("[data-bc-question-title]")
+        // console.log(reportersInputs, reportersCaptions)
+        // exhibitioncard.querySelector("[data-bc-title-container]").style.display = "none"
+        // reportersCaptions.forEach((e, i) => {
+        //     if (reportersInputs[i]) {
+        //         reportersInputs[i].setAttribute("placeHolder", e.textContent)
+        //         e.style.display = "none"
+        //     }
+        // })
+
+        const exhibitioncard = document.querySelector("#reporterRegistration")
+        const reportersInputs = exhibitioncard.querySelectorAll("[data-bc-text-input]")
+        const reportersCaptions = exhibitioncard.querySelectorAll("[data-bc-answer-title]")
+        // console.log(reportersCaptions);
+        const plusBtn = exhibitioncard.querySelector("[data-sys-plus]")
+        // console.log(reportersCaptions, reportersInputs)
+        plusBtn.textContent = `افزودن غرفه دار جدید +`
+        exhibitioncard.querySelector("[data-bc-title-container]").style.display = "none"
+        const titleplaceHolder = []
+        reportersCaptions.forEach((e, i) => {
+            if (reportersInputs[i]) {
+                titleplaceHolder.push(e.textContent)
+                reportersInputs[i].setAttribute("placeHolder", e.textContent)
+                e.style.display = "none"
+            }
+        })
+        const plusBtnFild = exhibitioncard.querySelectorAll("[data-sys-plus]")
+        plusBtnFild.forEach((e) => {
+            e.addEventListener("click", () => {
+                // console.log(">>>>>>>>>>>>", e);
+                exhibitioncard.querySelector("[data-bc-title-container]").style.display = "none"
+                reportersCaptions.forEach((e, i) => {
+                    if (reportersInputs[i]) {
+                        reportersInputs[i].setAttribute("placeHolder", titleplaceHolder[i])
+                        e.style.display = "none"
+                    }
+                })
+            })
+
+        })
+
+        document.body.addEventListener('click', function (event) {
+            const reportersCaptions = exhibitioncard.querySelectorAll("[data-bc-answer-title]")
+            const reportersInputs = exhibitioncard.querySelectorAll("[data-bc-text-input]")
+            const exhibition =  exhibitioncard.querySelectorAll("[data-bc-part-container]") 
+            if (event.target.tagName == "BUTTON") {
+                reportersInputs.forEach((e, i) => {
+                    const index = i % reportersCaptions.length;
+                    e.setAttribute("placeHolder", reportersCaptions[index].firstChild.data)                     
+                    if(e.value){
+                        // console.log(e);
+                        // console.log(exhibition);
+                    }
+                })
+            }
+
+
+            // const getvalue = event.currentTarget.querySelectorAll("[data-bc-part-container]>input")
+            // if ("data-sys-plus" in event.target.attributes) {
+            //     exhibitioncard.querySelector("[data-bc-title-container]").style.display = "none"
+            //     reportersCaptions.forEach((e, i) => {
+            //         // console.log(reportersInputs[i]);
+            //         if (reportersInputs[i]) {
+            //             reportersInputs[i].setAttribute("placeHolder", titleplaceHolder[i])
+            //             e.style.display = "none"
+            //         }
+            //     })
+            // }
+
+            // if (event.target.querySelector("[data-sys-plus]")) {
+            //     console.log("OK");
+            // }
+        });
+        // plusBtn.addEventListener("click", () => {
+        //     exhibitioncard.querySelector("[data-bc-title-container]").style.display = "none"
+        //     reportersCaptions.forEach((e, i) => {
+        //         console.log(titleplaceHolder[i]);
+        //         console.log(reportersInputs[i]);
+        //         if (reportersInputs[i]) {
+        //             reportersInputs[i].setAttribute("placeHolder", titleplaceHolder[i])
+        //             e.style.display = "none"
+        //         }
+        //     })
+
+        // })
+    }
+
+    function exhibitionCardOnRendered() {
+
+    }
+</script>
+
+</html>

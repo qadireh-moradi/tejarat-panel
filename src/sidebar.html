@@ -1,0 +1,162 @@
+<style>
+    .showpeyment {
+        transition: height 0.2s ease, visibility 0.2s ease;
+        height: auto;
+    }
+    .sectionFive .styleshowto{
+        display: none;
+
+    }
+</style>
+
+<div class="sidebar w-[258px] h-full duration-300 fixed top-0 bottom-0 mt-[100px] bg-secondary ">
+    <div class="w-full h-[50px] flex items-center justify-end p-[20px]">
+        <button id="sidebarbtn">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line y1="1" x2="18" y2="1" stroke="black" stroke-width="2" />
+                <line y1="6" x2="18" y2="6" stroke="black" stroke-width="2" />
+                <line y1="11" x2="18" y2="11" stroke="black" stroke-width="2" />
+            </svg>
+        </button>
+
+    </div>
+    <div class="w-full containermenusidebar">
+        <ul
+            class="menusidebar  [&>li]:w-full [&>li]:flex [&>li]:flex-row [&>li]:items-center [&>li]:h-[37px] [&>li]:text-text [&>li]:text-[14px] [&>li]:font-[400] [&>li]:rounded-tl-[18px] [&>li]:rounded-bl-[18px] [&>li]:leading-[37px] [&>li]:pr-[20px] cursor-pointer">
+            <li class="">ویرایش پروفایل</li>
+            <li><a href="company-registration.html">ثبت نام شرکت</a></li>
+            <li class="h-[300px] getpey">مالی </li>
+            <ul
+                class="[&>li]:text-[14px] [&>li]:leading-[37px] [&>li]:text-black  h-0 sidepey overflow-hidden [&>li]:pr-[30px] [&>li]:rounded-tl-[18px] [&>li]:rounded-bl-[18px]">
+                <li id="payment"><a href="riyal-payment.html"> پرداختى هاى ريالى </a></li>
+                <li id="payment"><a href="currency-payment.html">پرداختى هاى ارزی</a></li>
+                <li id="payment"><a href="cheque-payment.html">پرداختى هاى چک</a></li>
+            </ul>
+            <li><a href="cards.html">صدور کارت غرفه</a></li>
+
+            <li><a href="reporter-registration.html">ثبت نام خبرنگاران</a></li>
+            <li>دورهای ثبت نام شده</li>
+            <li>ثبت نام بازدیدکنندگان</li>
+            <li>ثبت شکایت</li>
+            <li>پیام ها</li>
+            <li><button>خروج</button></li>
+
+        </ul>
+    </div>
+
+
+</div>
+<script>
+    const sidebar = document.querySelector(".sidebar")
+    const sidebarbtn = document.querySelector("#sidebarbtn")
+    const containermenusidebar = document.querySelector(".containermenusidebar")
+    const dashboardm = document.querySelectorAll(".dashboardm>div")
+    const menusidebar = document.querySelectorAll(".menusidebar>li")
+    sidebarbtn.addEventListener("click", () => {
+        sidebar.classList.toggle("sideclose");
+        containermenusidebar.classList.toggle("showSideMenu")
+        document.querySelector(".dashboardm").classList.toggle("stylepaddingtoshow")
+
+
+    })
+
+
+
+    const getpey = document.querySelector(".getpey")
+    getpey.addEventListener("click", () => {
+        document.querySelector(".sidepey").classList.toggle("showpeyment")
+    })
+    // menusidebar.forEach((e, o) => {
+    //     e.addEventListener("click", (s, i) => {
+    //         menusidebar.forEach((i, p) => {
+    //             i.classList.remove("backgroundsidebarmenud")
+    //             dashboardm[p].classList.add("hiddenbox")
+    //             dashboardm[p].classList.remove("showbox")
+    //         })
+    //         s.currentTarget.classList.add("backgroundsidebarmenud")
+    //         dashboardm[o].classList.add("showbox")
+
+
+
+
+    //     })
+    // })
+
+
+    // const btnbox = document.querySelector(".btn-box")
+    // btnbox.addEventListener("click", (ev) => {
+    //     const catid = ev.target.value;
+    //     window.location.href = `menu?catid=${catid}`;
+
+    // })
+
+
+    // const menusidebar = document.querySelectorAll(".menusidebar>li>a");
+    // menusidebar.forEach((e) => {
+    //     const url = new URL(e.href)
+    //     console.log(url.pathname)
+    // });
+    const menusidebarItems = document.querySelectorAll(".menusidebar > li, .menusidebar > ul > li");
+    const urlsi = new URL(window.location.href);
+    const currentFileName = urlsi.pathname.split('/').pop();
+
+    menusidebarItems.forEach((element) => {
+        element.classList.remove("backgroundsidebarmenud");
+        if (element.querySelector("a")) {
+            const fileName = element.querySelector("a").href.split('/').pop();
+            
+            if (currentFileName === fileName && element.id == "payment") {
+                element.classList.add("backgroundsidebarmenud");
+                document.querySelector(".sidepey").classList.add("showpeyment")
+            }
+            if (currentFileName === fileName) {
+                element.classList.add("backgroundsidebarmenud");
+            }
+            // if(){
+                // document.querySelector(".sidepey").classList.add("showpeyment")
+            // }
+                
+        }
+    });
+
+    // const nestedMenus = document.querySelectorAll(".menusidebar > .getpey + ul > li");
+    // nestedMenus.forEach(subItem => {
+    //     subItem.addEventListener('click', () => {
+    //         const parentUl = subItem.closest('ul');
+    //         if (parentUl) {
+    //             parentUl.classList.add('showpeyment');
+    //         }
+    //     });
+
+    //     console.log(subItem);
+    // });
+
+
+
+
+    // const url = window.location.href
+    // console.log(url);
+    // window.addEventListener('load', () => {
+    //     console.log("OK");
+    //     const url = window.location.href
+    //     console.log(url);
+    //     const urlParams = new URLSearchParams(new URL(url).search);
+    //     const catid = urlParams.get('catid');
+    //     if (catid == null) {
+    //         return
+    //     } else {
+    //         if (catid) {
+    //             const activeButton = document.querySelector(`.btn-box button[value="${catid}"]`);
+    //             if (activeButton) {
+    //                 activeButton.classList.add('active');
+    //                 btnbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    //             }
+
+    //         } else {
+    //             btnbox.children[0].classList.add("active")
+    //         }
+    //     }
+    // })
+
+</script>

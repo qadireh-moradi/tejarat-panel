@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <title>Document</title>
+</head>
+<!-- img map -->
+<!-- http://i113v121.undertest.ir/images/Map-35.jpg
+http://i113v121.undertest.ir/images/Map-38.jpg
+http://i113v121.undertest.ir/images/Map-38A.jpg
+http://i113v121.undertest.ir/images/Map-38B.jpg -->
+
+<body class="font-IRANSansWeb">
+
+
+    <!-- triggers="edit.object" -->
+
+
+    <basis core="call" file="./src/header.html" run="atclient"></basis>
+    <div class="w-full h-full flex flex-row">
+        <!--  -->
+        <basis core="call" file="./src/sidebar.html" run="atclient"></basis>
+        <div class="dashboardm mt-[100px] pr-[250px] w-full h-full mx-[40px] pt-[56px] bg-white">
+           
+            <div class="showbox w-full h-full bg-secondary px-[61px] py-[45px] flex-col" id="exhibitioncard">
+                <basis core='api' if='{##edit.object|(false)##}' run='atclient' 
+                url='https://basispanel.ir/schema/domainform/AEEE917F-537A-467A-8428-A0602C33D982/fa/editobject' method='post' body='object_edit={##edit.object.value##}' content-type='application/x-www-form-urlencoded' triggers='edit.object' onprocessed='OnProcessedEditObject' ></basis>
+                
+                <basis core='api'  run='atclient' 
+                url='https://basispanel.ir/business/AEEE917F-537A-467A-8428-A0602C33D982/fa/objectlist' 
+                method='post' body='{"schemaid": "B8F21C4C-DD9C-4225-AA15-EA6402D271D8", 
+                "status": 0, 
+                "tablename": "db.list",
+                "site": true,
+                "creator" : 122504
+                }
+                ' content-type='application/json' triggers='' if="{##db.userid|(false)##}" onprocessed="objectLisrOnProccessed"></basis>
+                <div class="flex justify-between">
+                    <div class="flex flex-col ">
+                    <p class="font-bold mb-10 text-lg">صدور کارت غرفه</p>
+                    <p class="text-sm">ليست افراد غرفه دار جهت صدور كارت شناسايى شامل :</p>
+                </div>
+                <div class="color-text text-sm border-[1px] border-solid border-inputBorder w-1/2 h-[44px] rounded-[5px] flex items-center justify-center">دانلود کارت های ثبت شده</div>
+                </div>
+                <div id="card_schema">
+               
+            </div>
+                <button id="btctnex"
+                        class="btnclicknext  h-[50px] ml-[10px] bg-primary rounded-[8px] text-black " data-btn-add="">ثبت</button>
+            </div>
+            <!-- #################### -->
+
+
+            <div class="hiddenbox w-full h-full flex flex-col ">
+              
+            </div>
+          
+
+
+
+            <!-- #################### -->
+            <div class="hiddenbox w-full h-full bg-secondary">div3</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div4</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div5</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div6</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div7</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div8</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div9</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div10</div>
+        </div>
+
+
+
+    </div>
+
+
+    <!-- <Basis core="api" run="atclient" schemaUrl="https://www.freeform.ir/schema/domainform"
+    
+        paramUrl="/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت"
+        displayMode="new" button="[data-btn-add]" resultSourceId="demo.data" 
+        triggers="db.renew">
+    </Basis> -->
+    <!-- <basis core="api"
+        url="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/B8F21C4C-DD9C-4225-AA15-EA6402D271D8/fa/ثبت-نام-خبرنگار"
+        method="get" name="api.name" OnProcessed="showSchema" run="atclient"></basis> -->
+
+
+       
+</body>
+<script src="http://basiscore.net/_js/basiscore-2.36.2.min.js"></script>
+<script src="http://cdn.basiscore.net/_js/alasql.min.js"></script>
+<script>
+    var host = {
+        debug: false,
+
+        settings: {
+
+            'connection.web.callcommand': 'http://172.20.20.46:5501/',
+            "connection.web.trust_login": "https://basiscore.net/apicms",
+            "connection.web.userbehavior": "https://basiscore.net/apicms",
+            'connection.web.basiscore': 'https://basiscore.net/apicms',
+            // 'connection.local.basket': {
+            //     Url: '/js/LocalStorageBasket.js',
+            //     Function: 'LocalBasket'
+            // },
+            // 'connection.web.callcommand'
+            'default.dbsource.verb': 'post',
+            'default.call.verb': 'get',
+            'default.viewCommand.groupColumn': 'prpid',
+            'default.dmnid': '4880',
+            'default.binding.regex': '\\{##([^#]*)##\\}'
+
+        }
+    }
+     
+ function onSource(args) {
+ console.log(args)
+ const stringJson = JSON.stringify(args.source?.rows[0]);
+ $bc.setSource('edit.object', {
+ value: stringJson
+ })
+ }
+</script>
+<script>
+    
+function exhibitionCardOnRendered(){
+    const exhibitioncard = document.querySelector("#exhibitioncard")
+    const reportersInputs = exhibitioncard.querySelectorAll("[data-bc-text-input]")
+    const reportersCaptions = exhibitioncard.querySelectorAll("[data-bc-answer-title]")
+    const plusBtn = exhibitioncard.querySelector("[data-sys-plus]")
+    if(plusBtn){
+    plusBtn.textContent = `افزودن غرفه دار جدید +`
+    }
+    if(exhibitioncard.querySelector("[data-bc-title-container]")){
+        exhibitioncard.querySelector("[data-bc-title-container]").style.display ="none"
+    }
+    reportersCaptions.forEach((e,i) => {
+        if(reportersInputs[i]){
+            reportersInputs[i].setAttribute("placeHolder" , e.textContent)
+            e.style.display ="none"
+        }
+    })
+}
+function exhibitionCardOnRenderedEdit(){
+    const exhibitioncard = document.querySelector("#exhibitioncard")
+
+    setTimeout(() => {
+        const reportersInputs = exhibitioncard.querySelectorAll("[data-bc-text-input]")
+    const reportersCaptions = exhibitioncard.querySelectorAll("[data-bc-answer-title]")
+    const plusBtn = exhibitioncard.querySelector("[data-sys-plus]")
+        if(plusBtn){
+    plusBtn.textContent = `افزودن غرفه دار جدید +`
+    }
+
+    if(exhibitioncard.querySelector("[data-bc-title-container]")){
+        exhibitioncard.querySelector("[data-bc-title-container]").style.display ="none"
+    }
+    
+    // exhibitioncard.querySelector("[data-bc-answer-title]").style.display ="none"
+    
+    reportersCaptions.forEach((e,i) => {
+        if(reportersInputs[i]){
+            reportersInputs[i].setAttribute("placeHolder" , e.textContent)
+            e.style.display ="none"
+        }
+    })
+    }, 500);
+   
+    
+    
+}
+
+
+
+async function objectLisrOnProccessed(args){
+    var response = args.response;
+    var json = await response.json();
+    if(json.sources[0].data.length == 0){
+        document.querySelector("#card_schema").innerHTML = `
+         <basis core="schema" run="atclient" 
+                schemaUrl="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/B8F21C4C-DD9C-4225-AA15-EA6402D271D8/fa/صدور-کارت-غرفه" 
+                displayMode="new" button="[data-btn-add]" resultSourceId="form.result" OnRendered="exhibitionCardOnRendered"></basis>
+                <basis core='callback' method='onSource' run='AtClient' triggers='form.result' ></basis>
+             
+                
+                `
+    }
+    else{
+        document.querySelector("#card_schema").innerHTML = `
+          <basis core="api"
+                    url="https://basispanel.ir/schema/domainform/AEEE917F-537A-467A-8428-A0602C33D982/fa/5?hashid=B8F21C4C-DD9C-4225-AA15-EA6402D271D8"
+                    triggers="db.editCampaignSetting" method="get"
+                    run="atclient"></basis>
+
+      
+                <basis core='callback' method='onSource' run='AtClient' triggers='form.result' ></basis>
+             
+                  <basis core="schema"  run="atclient" datamembername="answer.data"
+                    schemaUrl="https://basispanel.ir/schema/domainform"  OnRendered="exhibitionCardOnRenderedEdit"
+                    displayMode="edit" button="[data-btn-add]" resultSourceId="lineEdit.data" 
+                       ></basis>
+                
+
+
+                `
+    }
+    const bc2 = $bc.new()
+            .addFragment('#card_schema')
+            .setOptions(host)
+            .run();
+}
+
+function OnProcessedEditObject(args){
+    
+}
+
+</script>
+
+</html>

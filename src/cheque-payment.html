@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/css/style.css">
+    <title>Document</title>
+</head>
+
+<!-- img map -->
+<!-- http://i113v121.undertest.ir/images/Map-35.jpg
+http://i113v121.undertest.ir/images/Map-38.jpg
+http://i113v121.undertest.ir/images/Map-38A.jpg
+http://i113v121.undertest.ir/images/Map-38B.jpg -->
+
+<body class="font-IRANSansWeb">
+
+
+    <!-- triggers="edit.object" -->
+
+
+    <basis core="call" file="./src/header.html" run="atclient"></basis>
+    <div class="w-full h-full flex flex-row">
+        <!--  -->
+        <basis core="call" file="./src/sidebar.html" run="atclient"></basis>
+        <div class="dashboardm mt-[100px] pr-[250px] w-full h-full mx-[40px] pt-[56px] bg-white">
+           
+            <div class="showbox w-full h-full bg-secondary px-[61px] py-[45px] flex-col" id="chequepayment">
+
+
+                <div class="showbox w-full h-full bg-secondary px-[61px] py-[45px] flex-col" id="currencypayment">
+                    <basis core='api'  run='atclient' 
+                    url='https://basispanel.ir/business/[##cms.cookie.rkey##]/fa/objectlist' 
+                    method='post' body='{"schemaid": "C5A73CF1-EE10-4FE2-A28B-9E24B2357345", 
+                    "status": 0, 
+                    "tablename": "db.list",
+                    "site": true,
+                    "creator" : "{##db.userid.value##}"
+                  
+                    }
+                    ' content-type='application/json' triggers='edit.object' if="{##db.userid|(false)##}" ></basis>
+    
+                    <basis core="print" datamembername="db.list" run="atclient">
+                        <layout>
+                            <script type="text/template">
+                                <div class="flex justify-between">
+                  
+                                    <p class=" mb-8 text-lg font-bold"> پرداخت های انجام شده</p>
+                
+                              
+                                </div>
+                                <div class="mb-10">
+                       
+                                    <div>
+                                    <div class="grid grid-cols-5 gap-[2px]">
+                                        <div class="bg-[#194A96] text-secondary font-bold text-base h-[35px] leading-9 px-10">شماره رسید دریافتی از برگزار کننده</div>
+                                        <div class="bg-[#194A96] text-secondary font-bold text-base h-[35px] leading-9 px-10">شماره چک</div>
+                                        <div class="bg-[#194A96] text-secondary font-bold text-base h-[35px] leading-9 px-10">مبلغ چک </div>
+                                        <div class="bg-[#194A96] text-secondary font-bold text-base h-[35px] leading-9 px-10">نام بانک</div>
+                                        <div class="bg-[#194A96] text-secondary font-bold text-base h-[35px] leading-9 px-10">تصویر فیش</div>
+                                    </div>
+                                  @child
+                                </div>
+                                </div>
+                            </script>
+                        </layout>
+                        <face>
+                            <script type="text/template">
+                                <div class="grid grid-cols-5 gap-[2px]">
+                                    <div class="bg-[#194A9626] text-text text-base py-5 px-10">@prp6140@</div>
+                                    <div class="bg-[#194A9626] text-text text-base py-5 px-10">@prp6141@</div>
+                                    <div class="bg-[#194A9626] text-text text-base py-5 px-10">@prp6142@</div>
+                                    <div class="bg-[#194A9626] text-text text-base py-5 px-10">@prp6143@	</div>
+                                    <div class="bg-[#194A9626] text-text text-base py-5 px-10">@prp6144@</div>
+                                </div>
+                            </script>
+    
+                        </face>
+                    </basis>
+                  
+
+                <div class="flex justify-between">
+              
+                    <p class=" mb-10 text-lg">مشخصات چک ضمانت (تعهد ارزی)</p>
+
+              
+                </div>
+                <basis core="schema" run="atclient" 
+                schemaUrl="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/C7F6C5BF-DA43-430E-B61D-17F6E84440BA/fa/پرداخت-چک" 
+                displayMode="new" button="[data-btn-add]" resultSourceId="form.result" OnRendered="chequepaymentOnRendered"></basis>
+                <basis core='callback' method='onSource' run='AtClient' triggers='form.result' ></basis>
+             
+                <basis core='api' if='{##edit.object|(false)##}' run='atclient' 
+                url='https://basispanel.ir/schema/domainform/CF34390A-5BFD-419C-A465-F1D1EF483776/fa/editobject' 
+                method='post' body='object_edit={##edit.object.value##}' content-type='application/x-www-form-urlencoded' triggers='edit.object' onprocessed='OnProcessedEditObject' ></basis>
+
+                <button id="btctnex"
+                        class="btnclicknext  h-[50px] ml-[10px] bg-primary rounded-[8px] text-black " data-btn-add="">ثبت</button>
+            </div>
+            <!-- #################### -->
+
+
+            <div class="hiddenbox w-full h-full flex flex-col ">
+              
+            </div>
+          
+
+
+
+            <!-- #################### -->
+            <div class="hiddenbox w-full h-full bg-secondary">div3</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div4</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div5</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div6</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div7</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div8</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div9</div>
+            <div class="hiddenbox w-full h-full bg-secondary">div10</div>
+        </div>
+
+
+
+    </div>
+
+
+    <!-- <Basis core="api" run="atclient" schemaUrl="https://www.freeform.ir/schema/domainform"
+    
+        paramUrl="/1585635B-6FD2-49CA-93C5-104CBA31716D/F8719EEC-702A-4589-877C-490B928BC0D8/fa/ثبت-شرکت"
+        displayMode="new" button="[data-btn-add]" resultSourceId="demo.data" 
+        triggers="db.renew">
+    </Basis> -->
+    <!-- <basis core="api"
+        url="https://www.freeform.ir/schema/domainform/1585635B-6FD2-49CA-93C5-104CBA31716D/B8F21C4C-DD9C-4225-AA15-EA6402D271D8/fa/ثبت-نام-خبرنگار"
+        method="get" name="api.name" OnProcessed="showSchema" run="atclient"></basis> -->
+
+
+       
+</body>
+<script src="http://basiscore.net/_js/basiscore-2.36.2.min.js"></script>
+<script src="http://cdn.basiscore.net/_js/alasql.min.js"></script>
+<script>
+    var host = {
+        debug: false,
+
+        settings: {
+
+            'connection.web.callcommand': 'http://172.20.20.46:5501/',
+            "connection.web.trust_login": "https://basiscore.net/apicms",
+            "connection.web.userbehavior": "https://basiscore.net/apicms",
+            'connection.web.basiscore': 'https://basiscore.net/apicms',
+            // 'connection.local.basket': {
+            //     Url: '/js/LocalStorageBasket.js',
+            //     Function: 'LocalBasket'
+            // },
+            // 'connection.web.callcommand'
+            'default.dbsource.verb': 'post',
+            'default.call.verb': 'get',
+            'default.viewCommand.groupColumn': 'prpid',
+            'default.dmnid': '4880',
+            'default.binding.regex': '\\{##([^#]*)##\\}'
+
+        }
+    }
+     
+ function onSource(args) {
+ const stringJson = JSON.stringify(args.source?.rows[0]);
+ $bc.setSource('edit.object', {
+ value: stringJson
+ })
+ }
+</script>
+<script>
+    
+function chequepaymentOnRendered(){
+    const exhibitioncard = document.querySelector("#chequepayment")
+    const reportersInputs = exhibitioncard.querySelectorAll("[data-sys-input-text],textarea")
+    const reportersCaptions = exhibitioncard.querySelectorAll("[data-bc-question-title]")
+    console.log(reportersInputs,reportersCaptions)
+    exhibitioncard.querySelector("[data-bc-title-container]").style.display ="none"
+    reportersCaptions.forEach((e,i) => {
+        if(reportersInputs[i]){
+            reportersInputs[i].setAttribute("placeHolder" , e.textContent)
+            e.style.display ="none"
+        }
+    })
+}
+
+function OnProcessedEditObject(args){
+    
+}
+
+
+
+</script>
+
+</html>
